@@ -27,6 +27,7 @@ public class HomeController {
     @RequestMapping({"", "/"})
     public String showProductForm(Model theModel) {
         Product product = new Product();
+        int val = 0;
         List<User> users = productService.getAllUsers();
         theModel.addAttribute("theProduct", product);
         theModel.addAttribute("theUsers", users);
@@ -35,6 +36,7 @@ public class HomeController {
 
     @PostMapping({"/saveProduct", "saveProduct"})
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
+        System.out.println(product.getUser().getId());
         productService.saveProduct(product);
         return "confirmation";
     }

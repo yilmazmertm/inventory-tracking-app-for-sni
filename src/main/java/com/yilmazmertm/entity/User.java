@@ -51,7 +51,6 @@ public class User {
         return userName + " " + userLastName;
     }
 
-
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
     }

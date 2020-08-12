@@ -26,6 +26,15 @@
             <td><form:input path="owner" /></td>
         </tr>
         <tr>
+            <td><label>User : </label></td>
+            <td><form:select path="user">
+                <form:option value="0" label="--Please Select"/>
+                <form:options items="${theUsers}" itemLabel="fullName"/>
+            </form:select>
+            </td>
+        </tr>
+
+        <tr>
             <td><label></label></td>
             <td><input type="submit" value="Save" class="save" /></td>
         </tr>

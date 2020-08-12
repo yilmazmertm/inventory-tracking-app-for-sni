@@ -113,7 +113,11 @@ public class Product {
         return update_time;
     }
 
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
     }
+
 }
