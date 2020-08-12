@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping({"", "/"})
@@ -33,7 +34,7 @@ public class HomeController {
     }
 
     @PostMapping({"/saveProduct", "saveProduct"})
-    public String addProduct(@ModelAttribute("theProduct") Product product, ModelMap model) {
+    public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
         productService.saveProduct(product);
         return "confirmation";
     }

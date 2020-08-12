@@ -10,4 +10,6 @@ public interface DAO {
     public void saveProduct(Product theProduct);
 
     public List<User> getAllUsers();
+
+    public User getUser(int user_id);
 }

@@ -7,12 +7,10 @@
 </head>
 <body>
 <h2>Add Product</h2>
-
 <form:form action="saveProduct" modelAttribute="theProduct" method="POST">
     <p>
-        ${theUsers}
+            ${theUsers}
     </p>
-
     <table>
         <tbody>
         <tr>
@@ -28,24 +26,11 @@
             <td><form:input path="owner" /></td>
         </tr>
         <tr>
-            <td><form:hidden path="createdBy" value = "FullName"/></td>
-        </tr>
-        <tr>
-            <td><label>Created By : </label></td>
-            <td>
-                <form:select path="user_id" itemValue="id">
-                    <form:options items="${theUsers}" itemLabel="FullName" itemValue="id"/>
-                </form:select>
-            </td>
-        </tr>
-        <tr>
             <td><label></label></td>
             <td><input type="submit" value="Save" class="save" /></td>
         </tr>
         </tbody>
     </table>
 </form:form>
-
-
 </body>
 </html>

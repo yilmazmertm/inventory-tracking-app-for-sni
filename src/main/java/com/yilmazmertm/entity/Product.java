@@ -33,7 +33,6 @@ public class Product {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time", nullable = false)
@@ -78,11 +77,7 @@ public class Product {
     }
 
     public String getCreatedBy() {
-        try {
-            return user.getFullName();
-        } catch (Exception E){
-            return createdBy;
-        }
+        return createdBy;
     }
 
     public void setCreatedBy() {
@@ -120,25 +115,5 @@ public class Product {
 
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
-    }
-
-
-    public int getUser_id() {
-        try {
-            return getUser().getId();
-        }catch (Exception e ){
-            System.out.println("Hata Girildi");
-            User user = new User();
-            user.setId(0);
-            user.setUserName("New Session");
-            user.setUserLastName("New Session");
-            setUser(user);
-            return user.getId();
-        }
-    }
-
-
-    public int getUserUserid(){
-        return getUser().getId();
     }
 }

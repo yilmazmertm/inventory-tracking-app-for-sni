@@ -28,8 +28,16 @@ public class DAOImpl implements DAO{
     public List<User> getAllUsers() {
 
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<User> theQuery = currentSession.createQuery("from User ", User.class);
-        List<User> users = theQuery.getResultList();
-        return users;
+        Query<User> theQuery = currentSession.createQuery("from User", User.class);
+        return theQuery.getResultList();
+    }
+
+    @Override
+    public User getUser(int user_id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<User> theQuery = currentSession.createQuery("from User where id=:user_id", User.class);
+        System.out.println(user_id);
+        theQuery.setParameter("user_id", user_id);
+        return theQuery.getSingleResult();
     }
 }
