@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,9 +9,9 @@
 <h2>Add Product</h2>
 
 <form:form action="saveProduct" modelAttribute="theProduct" method="POST">
-    <form:form >
-
-    </form:form>
+    <p>
+        ${theUsers}
+    </p>
 
     <table>
         <tbody>
@@ -27,12 +28,15 @@
             <td><form:input path="owner" /></td>
         </tr>
         <tr>
-            <td><label>Created By : </label></td>
-            <td><form:input path="createdBy" /></td>
+            <td><form:hidden path="createdBy" value = "FullName"/></td>
         </tr>
         <tr>
-            <td><label>Updated By : </label></td>
-            <td><form:input path="updatedBy" /></td>
+            <td><label>Created By : </label></td>
+            <td>
+                <form:select path="user_id" itemValue="id">
+                    <form:options items="${theUsers}" itemLabel="FullName" itemValue="id"/>
+                </form:select>
+            </td>
         </tr>
         <tr>
             <td><label></label></td>

@@ -33,6 +33,7 @@ public class Product {
     @JoinColumn(name = "user_id")
     private User user;
 
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time", nullable = false)
@@ -43,17 +44,6 @@ public class Product {
     @Column(name = "update_time", nullable = false)
     private Date update_time;
 
-    public Product() {
-
-    }
-
-    public Product(String productName, String manufacturer, String owner, String createdBy, String updatedBy) {
-        this.productName = productName;
-        this.manufacturer = manufacturer;
-        this.owner = owner;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
-    }
 
     public int getId() {
         return id;
@@ -88,11 +78,16 @@ public class Product {
     }
 
     public String getCreatedBy() {
-        return createdBy;
+        try {
+            return user.getFullName();
+        } catch (Exception E){
+            return createdBy;
+        }
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedBy() {
+
+        this.createdBy = user.getFullName();
     }
 
     public String getUpdatedBy() {
@@ -125,5 +120,25 @@ public class Product {
 
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
+    }
+
+
+    public int getUser_id() {
+        try {
+            return getUser().getId();
+        }catch (Exception e ){
+            System.out.println("Hata Girildi");
+            User user = new User();
+            user.setId(0);
+            user.setUserName("New Session");
+            user.setUserLastName("New Session");
+            setUser(user);
+            return user.getId();
+        }
+    }
+
+
+    public int getUserUserid(){
+        return getUser().getId();
     }
 }

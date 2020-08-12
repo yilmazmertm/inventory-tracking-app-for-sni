@@ -24,14 +24,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Product> products;
 
-
-    public User(String userName, String userLastName, String userRole) {
-        this.userName = userName;
-        this.userLastName = userLastName;
-        this.userRole = userRole;
+    public User() {
     }
-
-
 
     public int getId() {
         return id;
@@ -53,6 +47,10 @@ public class User {
         return userLastName;
     }
 
+    public String getFullName(){
+        return userName + " " + userLastName;
+    }
+
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
     }
@@ -63,5 +61,13 @@ public class User {
 
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
