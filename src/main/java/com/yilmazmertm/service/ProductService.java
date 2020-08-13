@@ -14,4 +14,6 @@ public interface ProductService {
     public List<User> getAllUsers();
 
     User getUser(int user_id);
+
+    List<Product> getAllProducts();
 }

@@ -14,4 +14,6 @@ public interface DAO {
     public List<User> getAllUsers();
 
     public User getUser(int user_id);
+
+    List<Product> getAllProducts();
 }

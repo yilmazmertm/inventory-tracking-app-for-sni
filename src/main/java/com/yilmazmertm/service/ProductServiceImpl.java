@@ -41,4 +41,10 @@ public class ProductServiceImpl implements ProductService{
     public User getUser(int user_id) {
         return productDao.getUser(user_id);
     }
+
+    @Override
+    @Transactional
+    public List<Product> getAllProducts() {
+        return productDao.getAllProducts();
+    }
 }

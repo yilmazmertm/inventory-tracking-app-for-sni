@@ -46,4 +46,12 @@ public class DAOImpl implements DAO{
         theQuery.setParameter("user_id", user_id);
         return theQuery.getSingleResult();
     }
+
+    @Override
+    public List<Product> getAllProducts() {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<Product> theQuery = currentSession.createQuery("from Product", Product.class);
+        return theQuery.getResultList();
+    }
+
 }

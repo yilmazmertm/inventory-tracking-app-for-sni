@@ -6,10 +6,7 @@ import com.yilmazmertm.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -60,6 +57,13 @@ public class HomeController {
         user.setUserRole("ROLE_USER");
        productService.saveUser(user);
        return "confirmation";
+    }
+
+    @GetMapping("/list")
+    public String listProducts(Model theModel) {
+        List<Product> theProducts = productService.getAllProducts();
+        theModel.addAttribute("products", theProducts);
+        return "list-products";
     }
 
 }
