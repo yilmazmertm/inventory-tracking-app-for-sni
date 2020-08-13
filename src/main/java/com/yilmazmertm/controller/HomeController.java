@@ -28,7 +28,6 @@ public class HomeController {
     @RequestMapping({"", "/"})
     public String showProductForm(Model theModel) {
         Product product = new Product();
-        User user = new User();
         List<User> users = productService.getAllUsers();
         List<Integer> user_ids = new ArrayList<>();
         for (User value : users) {
@@ -37,19 +36,30 @@ public class HomeController {
         theModel.addAttribute("theProduct", product);
         theModel.addAttribute("theUsers", users);
         theModel.addAttribute("user_ids", user_ids);
-        theModel.addAttribute("theUser", user);
         return "addProduct";
     }
 
     @PostMapping({"/saveProduct", "saveProduct"})
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
-        User user = new User();
-        List<User> users = productService.getAllUsers();
-        System.out.println("Gelen User Id : " + product.getUser().getId());
         User userFromDatabase = productService.getUser(product.getUser().getId());
-
+        product.setCreatedBy(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
         return "confirmation";
     }
+
+    @RequestMapping({"/addUser", "addUser"})
+    public String showUserForm(Model theModel) {
+        User user = new User();
+        theModel.addAttribute("userAddModel", user);
+        return "addUser";
+    }
+
+    @PostMapping({"/saveUser", "saveUser"})
+    public String addUser(@ModelAttribute("userAddModel") User user, Model theModel) {
+        user.setUserRole("ROLE_USER");
+       productService.saveUser(user);
+       return "confirmation";
+    }
+
 }

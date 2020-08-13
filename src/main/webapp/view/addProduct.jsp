@@ -4,16 +4,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Product Page</title>
+    <title>Add an Inventory Item</title>
 </head>
 <body>
-<h2>Add Product</h2>
-
-
+<h3>Please enter an Inventory Item with carefully checking the "user" column.</h3>
+<hr>
+<p>
+    <h4> Kullanıcı Listesinde Adınız yok ise, hemen kayıt yaptırın</h4>
+<br>
+<a href="${pageContext.request.contextPath}/addUser">Üye olun</a>
+</p>
 <form:form action="saveProduct" modelAttribute="theProduct" method="POST">
-    <p>
-            ${theUsers}
-    </p>
     <table>
         <tbody>
         <tr>

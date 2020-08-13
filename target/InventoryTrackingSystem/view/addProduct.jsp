@@ -1,16 +1,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add Product Page</title>
+    <title>Add an Inventory Item</title>
 </head>
 <body>
-<h2>Add Product</h2>
+<h3>Please enter an Inventory Item with carefully checking the "user" column.</h3>
+<hr>
+<p>
+    <h4> Kullanıcı Listesinde Adınız yok ise, hemen kayıt yaptırın</h4>
+<br>
+<a href="${pageContext.request.contextPath}/addUser">Üye olun</a>
+</p>
 <form:form action="saveProduct" modelAttribute="theProduct" method="POST">
-    <p>
-            ${theUsers}
-    </p>
     <table>
         <tbody>
         <tr>
@@ -26,14 +30,10 @@
             <td><form:input path="owner" /></td>
         </tr>
         <tr>
-            <td><label>User : </label></td>
-            <td><form:select path="user">
-                <form:option value="0" label="--Please Select"/>
-                <form:options items="${theUsers}" itemLabel="fullName"/>
-            </form:select>
-            </td>
+            <td>User id : </td>
+            <td><form:select path="user.id" items="${user_ids}">
+            </form:select></td>
         </tr>
-
         <tr>
             <td><label></label></td>
             <td><input type="submit" value="Save" class="save" /></td>
