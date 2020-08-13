@@ -24,7 +24,19 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Product> products;
 
+    @Column(name = "team")
+    private String teamMember;
+
+    public String getTeamMember() {
+        return teamMember;
+    }
+
+    public void setTeamMember(String teamMember) {
+        this.teamMember = teamMember;
+    }
+
     public User() {
+
     }
 
     public int getId() {
@@ -47,10 +59,6 @@ public class User {
         return userLastName;
     }
 
-    public String getFullName(){
-        return userName + " " + userLastName;
-    }
-
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
     }
@@ -71,4 +79,7 @@ public class User {
         this.products = products;
     }
 
+    public String getFullName() {
+        return userName + " " + userLastName;
+    }
 }

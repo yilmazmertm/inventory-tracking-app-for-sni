@@ -20,6 +20,20 @@
             <td><form:input path="userLastName" /></td>
         </tr>
         <tr>
+            <td><label>Please enter your team at the company:</label></td>
+            <td>
+                <form:select path="teamMember">
+                    <form:option value="Java" />
+                    <form:option value="Abap" />
+                    <form:option value="Destek" />
+                    <form:option value="Bilgi Islem" />
+                    <form:option value="IK" />
+                    <form:option value="Stajyer" />
+                </form:select>
+            </td>
+        </tr>
+        
+        <tr>
             <td><label></label></td>
             <td><input type="submit" value="Save" class="save" /></td>
         </tr>

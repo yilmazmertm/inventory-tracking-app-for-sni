@@ -3,12 +3,16 @@ package com.yilmazmertm.controller;
 import com.yilmazmertm.entity.Product;
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,7 +43,8 @@ public class HomeController {
     @PostMapping({"/saveProduct", "saveProduct"})
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
         User userFromDatabase = productService.getUser(product.getUser().getId());
-        product.setCreatedBy(userFromDatabase.getFullName());
+        product.setCreatedBy("admin");
+        product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
         return "confirmation";
@@ -66,4 +71,10 @@ public class HomeController {
         return "list-products";
     }
 
+    @GetMapping("/listuser")
+    public String listUsers(Model theModel) {
+        List<User> users = productService.getAllUsers();
+        theModel.addAttribute("user", users);
+        return "list-users";
+    }
 }
