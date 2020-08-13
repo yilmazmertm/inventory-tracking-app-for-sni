@@ -15,5 +15,13 @@ public interface DAO {
 
     public User getUser(int user_id);
 
+    User getUserForUpdate(int theId);
+
     List<Product> getAllProducts();
+
+    Product getProduct(int theId);
+
+    void deleteProduct(int theId);
+
+    void deleteUser(int theId);
 }

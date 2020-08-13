@@ -27,6 +27,11 @@ public class HomeController {
     }
 
     @RequestMapping({"", "/"})
+    public String showHomePage() {
+        return "home";
+    }
+
+    @GetMapping({"addProduct", "/addProduct"})
     public String showProductForm(Model theModel) {
         Product product = new Product();
         List<User> users = productService.getAllUsers();
@@ -42,26 +47,13 @@ public class HomeController {
 
     @PostMapping({"/saveProduct", "saveProduct"})
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
+
         User userFromDatabase = productService.getUser(product.getUser().getId());
         product.setCreatedBy("admin");
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
         return "confirmation";
-    }
-
-    @RequestMapping({"/addUser", "addUser"})
-    public String showUserForm(Model theModel) {
-        User user = new User();
-        theModel.addAttribute("userAddModel", user);
-        return "addUser";
-    }
-
-    @PostMapping({"/saveUser", "saveUser"})
-    public String addUser(@ModelAttribute("userAddModel") User user, Model theModel) {
-        user.setUserRole("ROLE_USER");
-       productService.saveUser(user);
-       return "confirmation";
     }
 
     @GetMapping("/list")
@@ -71,10 +63,23 @@ public class HomeController {
         return "list-products";
     }
 
-    @GetMapping("/listuser")
-    public String listUsers(Model theModel) {
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("productId") int theId, Model theModel) {
         List<User> users = productService.getAllUsers();
-        theModel.addAttribute("user", users);
-        return "list-users";
+        List<Integer> user_ids = new ArrayList<>();
+        for (User value : users) {
+            user_ids.add(value.getId());
+        }
+        theModel.addAttribute("theUsers", users);
+        theModel.addAttribute("user_ids", user_ids);
+        Product theProduct = productService.getProduct(theId);
+        theModel.addAttribute("theProduct", theProduct);
+        return "addProduct";
+    }
+
+    @GetMapping("/delete")
+    public String deleteProduct(@RequestParam("productId") int theId) {
+        productService.deleteProduct(theId);
+        return "redirect:/";
     }
 }

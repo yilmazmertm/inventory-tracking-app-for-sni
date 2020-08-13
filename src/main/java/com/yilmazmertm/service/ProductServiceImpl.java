@@ -17,7 +17,6 @@ public class ProductServiceImpl implements ProductService{
         this.productDao = productDao;
     }
 
-
     @Override
     @Transactional
     public void saveProduct(Product product) {
@@ -47,4 +46,29 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getAllProducts() {
         return productDao.getAllProducts();
     }
+
+    @Override
+    @Transactional
+    public Product getProduct(int theId) {
+        return productDao.getProduct(theId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteProduct(int theId) {
+        productDao.deleteProduct(theId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(int theId) {
+        productDao.deleteUser(theId);
+    }
+
+    @Override
+    @Transactional
+    public User getUserForUpdate(int theId) {
+        return productDao.getUserForUpdate(theId);
+    }
+
 }

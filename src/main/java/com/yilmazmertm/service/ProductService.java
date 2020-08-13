@@ -16,4 +16,12 @@ public interface ProductService {
     User getUser(int user_id);
 
     List<Product> getAllProducts();
+
+    Product getProduct(int theId);
+
+    void deleteProduct(int theId);
+
+    void deleteUser(int theId);
+
+    User getUserForUpdate(int theId);
 }

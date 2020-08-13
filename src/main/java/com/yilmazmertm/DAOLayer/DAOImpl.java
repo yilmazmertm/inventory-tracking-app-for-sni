@@ -26,6 +26,7 @@ public class DAOImpl implements DAO{
 
     @Override
     public void saveUser(User user) {
+        System.out.println(user.getId());
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);
     }
@@ -48,10 +49,39 @@ public class DAOImpl implements DAO{
     }
 
     @Override
+    public User getUserForUpdate(int theId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        User user = currentSession.get(User.class, theId);
+        return user;
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         Session currentSession = sessionFactory.getCurrentSession();
         Query<Product> theQuery = currentSession.createQuery("from Product", Product.class);
         return theQuery.getResultList();
     }
 
+    @Override
+    public Product getProduct(int theId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Product product = currentSession.get(Product.class, theId);
+        return product;
+    }
+
+    @Override
+    public void deleteProduct(int theId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query theQuery = currentSession.createQuery("delete from Product where id=:productId");
+        theQuery.setParameter("productId", theId);
+        theQuery.executeUpdate();
+    }
+
+    @Override
+    public void deleteUser(int theId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query theQuery = currentSession.createQuery("delete from User where id=:userId");
+        theQuery.setParameter("userId", theId);
+        theQuery.executeUpdate();
+    }
 }

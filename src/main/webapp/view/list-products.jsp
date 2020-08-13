@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
-<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <style>
@@ -35,9 +34,18 @@
         <th>Purchase D.</th>
         <th>Setup D.</th>
         <th>Setup D. for OS</th>
+        <th>Action</th>
     </tr>
 
     <c:forEach var="product" items="${products}">
+        <c:url var="updateLink" value="/showFormForUpdate">
+            <c:param name="productId" value="${product.id}" />
+        </c:url>
+        <c:url var="deleteLink" value="/delete">
+            <c:param name="productId" value="${product.id}" />
+        </c:url>
+
+
         <tr>
             <td> ${product.productName} </td>
             <td> ${product.createdBy} </td>
@@ -59,6 +67,8 @@
             <td> ${product.purchaseDate} </td>
             <td> ${product.setupDate} </td>
             <td> ${product.setupDateForWindows} </td>
+            <td><a href="${updateLink}"> Update</a> -- <a href="${deleteLink}"> Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
