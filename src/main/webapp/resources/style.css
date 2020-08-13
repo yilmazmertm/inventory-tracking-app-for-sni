@@ -1,0 +1,22 @@
+.new-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+
+.opening-menu{
+    text-align: center;
+    table-layout: auto;
+    border-color: aqua;
+    font-family: "Corbel Light", sans-serif;
+}
+
+.title{
+    text-align: center;
+    table-layout: auto;
+    border-color: black;
+    font-family: "Roboto Mono", serif;
+
+}
+
