@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @RequestMapping({"", "/"})
@@ -27,16 +28,27 @@ public class HomeController {
     @RequestMapping({"", "/"})
     public String showProductForm(Model theModel) {
         Product product = new Product();
-        int val = 0;
+        User user = new User();
         List<User> users = productService.getAllUsers();
+        List<Integer> user_ids = new ArrayList<>();
+        for (User value : users) {
+            user_ids.add(value.getId());
+        }
         theModel.addAttribute("theProduct", product);
         theModel.addAttribute("theUsers", users);
+        theModel.addAttribute("user_ids", user_ids);
+        theModel.addAttribute("theUser", user);
         return "addProduct";
     }
 
     @PostMapping({"/saveProduct", "saveProduct"})
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
-        System.out.println(product.getUser().getId());
+        User user = new User();
+        List<User> users = productService.getAllUsers();
+        System.out.println("Gelen User Id : " + product.getUser().getId());
+        User userFromDatabase = productService.getUser(product.getUser().getId());
+
+        product.setUser(userFromDatabase);
         productService.saveProduct(product);
         return "confirmation";
     }

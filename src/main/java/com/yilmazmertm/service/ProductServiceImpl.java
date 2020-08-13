@@ -26,6 +26,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     @Transactional
+    public void saveUser(User user) {
+        productDao.saveUser(user);
+    }
+
+    @Override
+    @Transactional
     public List<User> getAllUsers() {
         return productDao.getAllUsers();
     }

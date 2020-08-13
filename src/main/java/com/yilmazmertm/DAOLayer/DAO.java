@@ -9,6 +9,8 @@ public interface DAO {
 
     public void saveProduct(Product theProduct);
 
+    public void saveUser(User user);
+
     public List<User> getAllUsers();
 
     public User getUser(int user_id);

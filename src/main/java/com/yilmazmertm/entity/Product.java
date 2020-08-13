@@ -120,4 +120,8 @@ public class Product {
         this.update_time = update_time;
     }
 
+    public String getFullName(){
+        return user.getFullName();
+    }
+
 }

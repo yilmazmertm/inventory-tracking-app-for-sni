@@ -25,6 +25,12 @@ public class DAOImpl implements DAO{
     }
 
     @Override
+    public void saveUser(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(user);
+    }
+
+    @Override
     public List<User> getAllUsers() {
 
         Session currentSession = sessionFactory.getCurrentSession();

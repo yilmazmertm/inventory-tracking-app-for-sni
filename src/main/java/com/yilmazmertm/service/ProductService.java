@@ -9,6 +9,8 @@ public interface ProductService {
 
     public void saveProduct(Product product);
 
+    public void saveUser(User user);
+
     public List<User> getAllUsers();
 
     User getUser(int user_id);
