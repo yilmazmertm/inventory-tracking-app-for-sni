@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="../resources/style.css">
     <title>Add an Inventory Item</title>
 </head>
-<body class="list-products">
-<h3>Please enter an Inventory Item with carefully checking the "user" column.</h3>
+<body class="add-product">
+<h3>Please enter an Inventory Item with carefully checking the "owner" column.</h3>
 <hr>
 <p>
     <h4> Kullanıcı Listesinde Adınız yok ise, hemen kayıt yaptırın</h4>

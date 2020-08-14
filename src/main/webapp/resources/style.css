@@ -23,11 +23,27 @@
 }
 
 .list-products{
-    border: 2px cadetblue;
+    border-collapse: collapse;
+    border: 1px solid black;
     font-family: "Roboto Mono", serif;
     background-color: beige;
-    background-blend-mode: luminosity;
     text-align: center;
     vertical-align: center;
 }
+
+.add-product{
+    font-family: "Roboto Mono", serif;
+    background-color: beige;
+    text-align: center;
+    vertical-align: center;
+}
+
+.options{
+    text-decoration: none;
+    color: beige;
+}
+a, u {
+    text-decoration: none;
+}
+
 

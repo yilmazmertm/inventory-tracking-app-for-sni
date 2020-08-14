@@ -9,9 +9,9 @@
 <body class="list-products">
 <table>
     <tr>
-        <th>User Name and Surname</th>
-        <th>Team</th>
-        <th>Action</th>
+        <th>Full Name    </th>
+        <th>Team    </th>
+        <th>Action    </th>
     </tr>
 
     <c:forEach var="user" items="${users}">
@@ -23,9 +23,9 @@
         </c:url>
 
         <tr>
-            <td> ${user.fullName} </td>
-            <td> ${user.teamMember} </td>
-            <td><a href="${updateLink}">Update</a> -- <a href="${deleteLink}">Delete</a></td>
+            <td> ${user.fullName}     </td>
+            <td> ${user.teamMember}     </td>
+            <td><a href="${updateLink}">    Update</a> - <a href="${deleteLink}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

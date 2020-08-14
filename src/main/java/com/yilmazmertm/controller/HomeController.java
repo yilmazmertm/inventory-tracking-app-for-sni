@@ -52,13 +52,12 @@ public class HomeController {
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
 
         User userFromDatabase = userService.getUser(product.getUser().getId());
-        product.setCreatedBy("admin");
+        product.setCreatedBy(userFromDatabase.getFullName());
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
         return "confirmation";
     }
-
 
     @GetMapping("/list")
     public String listProducts(Model theModel) {

@@ -4,16 +4,22 @@
     <meta charset="utf-8">
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="../resources/style.css">
+    <style>
+        a, u {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body class="body-class">
 <div>
-<h2 class="title">Main Menu</h2>
+<h2 class="title">Inventory Tracking App</h2>
 
 <ul class="opening-menu">
-    <li class="items"><a href="${pageContext.request.contextPath}/list"><h1>List Products</h1></a></li>
-    <li><a href="${pageContext.request.contextPath}/addProduct"><h1>Add Product</h1></a></li>
-    <li><a href="${pageContext.request.contextPath}/user/list"><h1>List Users</h1></a></li>
-    <li><a href="${pageContext.request.contextPath}/user/addUser"><h1>Add User</h1></a></li>
+    <br><br>
+    <li><a class="options" href="${pageContext.request.contextPath}/list"><h1>List Products</h1></a></li>
+    <li><a class="options" href="${pageContext.request.contextPath}/addProduct"><h1>Add Product</h1></a></li>
+    <li><a class="options" href="${pageContext.request.contextPath}/user/list"><h1>List Users</h1></a></li>
+    <li><a class="options" href="${pageContext.request.contextPath}/user/addUser"><h1>Add User</h1></a></li>
 </ul>
 </div>
 

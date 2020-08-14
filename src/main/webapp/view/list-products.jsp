@@ -6,6 +6,16 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../resources/style.css">
     <title>Product List Page</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            vertical-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body class="list-products">
 <table>
@@ -44,7 +54,7 @@
 
         <tr>
             <td> ${product.productName} </td>
-            <td> ${product.createdBy} </td>
+            <td> ${product.owner} </td>
             <td> ${product.manufacturer} </td>
             <td> ${product.oldProductName} </td>
             <td> ${product.model} </td>
