@@ -2,6 +2,7 @@ package com.yilmazmertm.controller;
 
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
+import com.yilmazmertm.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +13,17 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    ProductService productService;
-    public UserController(ProductService productService) {
+    private final ProductService productService;
+    private final UserService userService;
+
+    public UserController(ProductService productService, UserService userService) {
         this.productService = productService;
+        this.userService = userService;
     }
 
     @GetMapping("/list")
     public String listUsers(Model theModel) {
-        List<User> users = productService.getAllUsers();
+        List<User> users = userService.getAllUsers();
         theModel.addAttribute("users", users);
         return "list-users";
     }
@@ -36,13 +40,13 @@ public class UserController {
         // ıd burda 0 oyüzden update değilde save yapıyor
         System.out.println(user.getId());
         System.out.println(user.getFullName());
-        productService.saveUser(user);
+        userService.saveUser(user);
         return "confirmation";
     }
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId, Model theModel) {
-        User theUser = productService.getUserForUpdate(theId);
+        User theUser = userService.getUserForUpdate(theId);
         // Buraya geliyor data sıkıntı yok
         theModel.addAttribute("user", theUser);
         return "addUser";
@@ -50,7 +54,7 @@ public class UserController {
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam("userId") int theId) {
-        productService.deleteUser(theId);
+        userService.deleteUser(theId);
         return "home";
     }
 }

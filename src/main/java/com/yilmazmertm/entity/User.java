@@ -21,7 +21,7 @@ public class User {
     @Column(name = "user_role")
     private String userRole;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Product> products;
 
     @Column(name = "team")

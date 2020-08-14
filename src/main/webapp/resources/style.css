@@ -20,3 +20,8 @@
 
 }
 
+.body-class{
+    background: black url("../resources/SNIwallpaper.jpg");
+    background-size: auto;
+}
+

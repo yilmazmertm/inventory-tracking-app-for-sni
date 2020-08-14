@@ -5,8 +5,8 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="../resources/style.css">
 </head>
-<body>
-<img class = "ui-icon-background" src="../resources/SNIwallpaper.jpg">
+<body class="body-class">
+<div>
 <h2 class="title">Main Menu</h2>
 
 <ul class="opening-menu">
@@ -15,6 +15,7 @@
     <li><a href="${pageContext.request.contextPath}/user/list"><h1>List Users</h1></a></li>
     <li><a href="${pageContext.request.contextPath}/user/addUser"><h1>Add User</h1></a></li>
 </ul>
+</div>
 
 </body>
 </html>

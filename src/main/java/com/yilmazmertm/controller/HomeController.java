@@ -3,6 +3,7 @@ package com.yilmazmertm.controller;
 import com.yilmazmertm.entity.Product;
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
+import com.yilmazmertm.service.UserService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,12 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private ProductService productService;
+    private final ProductService productService;
+    private final UserService userService;
 
-    public HomeController(ProductService productService) {
+    public HomeController(ProductService productService, UserService userService) {
         this.productService = productService;
+        this.userService = userService;
     }
 
     @RequestMapping({"", "/"})
@@ -34,7 +37,7 @@ public class HomeController {
     @GetMapping({"addProduct", "/addProduct"})
     public String showProductForm(Model theModel) {
         Product product = new Product();
-        List<User> users = productService.getAllUsers();
+        List<User> users = userService.getAllUsers();
         List<Integer> user_ids = new ArrayList<>();
         for (User value : users) {
             user_ids.add(value.getId());
@@ -48,7 +51,7 @@ public class HomeController {
     @PostMapping({"/saveProduct", "saveProduct"})
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
 
-        User userFromDatabase = productService.getUser(product.getUser().getId());
+        User userFromDatabase = userService.getUser(product.getUser().getId());
         product.setCreatedBy("admin");
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
@@ -56,16 +59,29 @@ public class HomeController {
         return "confirmation";
     }
 
+
     @GetMapping("/list")
     public String listProducts(Model theModel) {
         List<Product> theProducts = productService.getAllProducts();
+        for (Product theProduct : theProducts) {
+            if (theProduct.getUser().getId() == (0)) {
+                User user = new User();
+                user.setId(99);
+                user.setUserName("Removed User");
+                user.setUserLastName("Removed User");
+                user.setUserRole("Left");
+                theProduct.setUser(user);
+            }
+            System.out.println("girmedi");
+        }
+
         theModel.addAttribute("products", theProducts);
         return "list-products";
     }
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("productId") int theId, Model theModel) {
-        List<User> users = productService.getAllUsers();
+        List<User> users = userService.getAllUsers();
         List<Integer> user_ids = new ArrayList<>();
         for (User value : users) {
             user_ids.add(value.getId());
