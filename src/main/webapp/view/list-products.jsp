@@ -79,5 +79,9 @@
     </c:forEach>
 </table>
 
+<p>
+<a href="${pageContext.request.contextPath}/">Ana Menüye Dön</a>
+</p>
+
 </body>
 </html>

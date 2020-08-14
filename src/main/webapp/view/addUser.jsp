@@ -10,6 +10,9 @@
 <body class="list-products">
 
 <form:form action="saveUser" modelAttribute="user" method="post">
+
+    <form:hidden path="id" />
+
     <table>
         <tbody>
         <tr>

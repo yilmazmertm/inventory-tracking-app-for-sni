@@ -10,7 +10,7 @@
 <h3>Please enter an Inventory Item with carefully checking the "owner" column.</h3>
 <hr>
 <p>
-    <h4> Kullanıcı Listesinde Adınız yok ise, hemen kayıt yaptırın</h4>
+<h4> Kullanıcı Listesinde Adınız yok ise, hemen kayıt yaptırın</h4>
 <br>
 <a href="${pageContext.request.contextPath}/user/addUser">Üye olun</a>
 </p>
@@ -25,9 +25,11 @@
             <td><form:input path="productName" /></td>
         </tr>
         <tr>
-            <td>The Owner of the Product : </td>
-            <td><form:select path="user.id" items="${user_ids}">
-            </form:select></td>
+                <td>The Owner of the Product : </td>
+                <td>
+                    <form:select path="user.id" items="${theUsers}" itemLabel="UserName" itemValue="Id">
+                    </form:select>
+                </td>
         </tr>
         <tr>
             <td><label>Manufacturer : </label></td>
