@@ -48,15 +48,14 @@ public class HomeController {
         return "addProduct";
     }
 
-    @PostMapping({"/saveProduct", "saveProduct"})
+    @PostMapping("/saveProduct")
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
-
-        User userFromDatabase = userService.getUser(product.getUser().getId());
+        User userFromDatabase = userService.getUserForUpdate(product.getUser().getId());
         product.setCreatedBy("admin");
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
-        return "confirmation";
+        return "redirect:/list";
     }
 
     @GetMapping("/list")
@@ -88,6 +87,8 @@ public class HomeController {
         theModel.addAttribute("theUsers", users);
         theModel.addAttribute("user_ids", user_ids);
         Product theProduct = productService.getProduct(theId);
+        System.out.println("Show Update içinde : " + theId);
+        System.out.println("Show Update içinde : " + theProduct.getId());
         theModel.addAttribute("theProduct", theProduct);
         return "addProduct";
     }
@@ -95,6 +96,6 @@ public class HomeController {
     @GetMapping("/delete")
     public String deleteProduct(@RequestParam("productId") int theId) {
         productService.deleteProduct(theId);
-        return "redirect:/";
+        return "redirect:/list";
     }
 }

@@ -14,7 +14,10 @@
 <br>
 <a href="${pageContext.request.contextPath}/user/addUser">Üye olun</a>
 </p>
-<form:form action="saveProduct" modelAttribute="theProduct" method="POST">
+<form:form action="saveProduct" modelAttribute="theProduct" method="post">
+
+    <form:hidden path="id" />
+
     <table>
         <tbody>
         <tr>

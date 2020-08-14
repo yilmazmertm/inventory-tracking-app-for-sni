@@ -37,7 +37,8 @@ public class UserController {
 
     @PostMapping("/saveUser")
     public String addUser(@ModelAttribute("user") User user, Model theModel) {
-        // ıd burda 0 oyüzden update değilde save yapıyor
+        user.setUserRole("ROLE_USER");
+        // ıd burda 0 o yüzden update değilde save yapıyor
         System.out.println(user.getId());
         System.out.println(user.getFullName());
         userService.saveUser(user);
@@ -55,6 +56,6 @@ public class UserController {
     @GetMapping("/delete")
     public String deleteUser(@RequestParam("userId") int theId) {
         userService.deleteUser(theId);
-        return "home";
+        return "redirect:/user/list";
     }
 }
