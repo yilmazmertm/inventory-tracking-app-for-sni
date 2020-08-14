@@ -52,7 +52,7 @@ public class HomeController {
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
 
         User userFromDatabase = userService.getUser(product.getUser().getId());
-        product.setCreatedBy(userFromDatabase.getFullName());
+        product.setCreatedBy("admin");
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
