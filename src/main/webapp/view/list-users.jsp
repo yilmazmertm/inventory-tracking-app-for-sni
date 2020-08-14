@@ -3,15 +3,10 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
 <html>
 <head>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            align-content: center;
-        }
-    </style>
     <title>List Users Page</title>
+    <link rel="stylesheet" type="text/css" href="../resources/style.css">
 </head>
-<body>
+<body class="list-products">
 <table>
     <tr>
         <th>User Name and Surname</th>

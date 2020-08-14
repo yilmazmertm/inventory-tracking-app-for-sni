@@ -3,9 +3,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Kullanıcı Ekleme Sayfası</title>
+    <link rel="stylesheet" type="text/css" href="../resources/style.css">
 </head>
-<body>
+<body class="list-products">
 
 <form:form action="saveUser" modelAttribute="user" method="post">
     <table>

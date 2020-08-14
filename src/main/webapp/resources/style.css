@@ -1,15 +1,9 @@
-.new-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    empty-cells: show;
-    border: 1px solid #cbcbcb;
-}
-
 .opening-menu{
     text-align: center;
     table-layout: auto;
     border-color: aqua;
     font-family: "Corbel Light", sans-serif;
+    color: white;
 }
 
 .title{
@@ -21,7 +15,19 @@
 }
 
 .body-class{
+    color: beige;
+    font-weight: bold;
     background: black url("../resources/SNIwallpaper.jpg");
     background-size: auto;
+
+}
+
+.list-products{
+    border: 2px cadetblue;
+    font-family: "Roboto Mono", serif;
+    background-color: beige;
+    background-blend-mode: luminosity;
+    text-align: center;
+    vertical-align: center;
 }
 

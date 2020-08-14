@@ -3,10 +3,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="../resources/style.css">
+    <link rel="stylesheet" type="text/css" href="../resources/style.css">
     <title>Add an Inventory Item</title>
 </head>
-<body>
+<body class="list-products">
 <h3>Please enter an Inventory Item with carefully checking the "user" column.</h3>
 <hr>
 <p>
@@ -15,7 +15,7 @@
 <a href="${pageContext.request.contextPath}/user/addUser">Üye olun</a>
 </p>
 <form:form action="saveProduct" modelAttribute="theProduct" method="POST">
-    <table class="new-table">
+    <table>
         <tbody>
         <tr>
             <td><label>Product Name : </label></td>
