@@ -4,45 +4,24 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel = "stylesheet">
     <link rel="stylesheet" type="text/css" href="../resources/style.css">
     <title>Product List Page</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            text-align: center;
-            vertical-align: center;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
 </head>
-<body class="list-products">
-<table>
+<body>
+<table class="table table-hover">
+    <thead>
     <tr>
-        <th>Product Name</th>
-        <th>Owner</th>
-        <th>Manufacturer</th>
-        <th>Old Name</th>
-        <th>Model</th>
-        <th>Serial No</th>
-        <th>Memory (GB)</th>
-        <th>OS</th>
-        <th>Domain</th>
-        <th>LAN</th>
-        <th>WLAN</th>
-        <th>AntiVirus</th>
-        <th>License No</th>
-        <th>Office</th>
-        <th>Seller</th>
-        <th>Product No</th>
-        <th>Additional Note</th>
-        <th>Purchase D.</th>
-        <th>Setup D.</th>
-        <th>Setup D. for OS</th>
-        <th>Action</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Manufacturer</th>
+        <th scope="col">Model</th>
+        <th scope="col">Memory</th>
+        <th scope="col">Purchase Date</th>
+        <th scope="col">Action</th>
     </tr>
-
+    </thead>
+    <tbody>
     <c:forEach var="product" items="${products}">
         <c:url var="updateLink" value="/showFormForUpdate">
             <c:param name="productId" value="${product.id}" />
@@ -50,38 +29,21 @@
         <c:url var="deleteLink" value="/delete">
             <c:param name="productId" value="${product.id}" />
         </c:url>
-
-
         <tr>
-            <td> ${product.productName} </td>
-            <td> ${product.owner} </td>
-            <td> ${product.manufacturer} </td>
-            <td> ${product.oldProductName} </td>
-            <td> ${product.model} </td>
-            <td> ${product.serialNo} </td>
-            <td> ${product.memoryGb} </td>
-            <td> ${product.operatingSystem} </td>
-            <td> ${product.domainName} </td>
-            <td> ${product.lanAddress} </td>
-            <td> ${product.wlanAddress} </td>
-            <td> ${product.antivirus} </td>
-            <td> ${product.licenseNumber} </td>
-            <td> ${product.officeApp} </td>
-            <td> ${product.seller} </td>
-            <td> ${product.productNumber} </td>
-            <td> ${product.notes} </td>
-            <td> ${product.purchaseDate} </td>
-            <td> ${product.setupDate} </td>
-            <td> ${product.setupDateForWindows} </td>
-            <td><a href="${updateLink}"> Update</a> -- <a href="${deleteLink}"> Delete</a>
-            </td>
+            <th>${product.owner}</th>
+            <td>${product.productName}</td>
+            <td>${product.manufacturer}</td>
+            <td>${product.model}</td>
+            <td>${product.memoryGb}</td>
+            <td>${product.purchaseDate}</td>
+            <td><a href="${updateLink}"> Update</a> -- <a href="${deleteLink}"> Delete</a></td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
-
 <p>
-<a href="${pageContext.request.contextPath}/">Ana Menüye Dön</a>
+    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Üye olun</a>
+    <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Ana Sayfaya Dön</a>
 </p>
-
 </body>
 </html>

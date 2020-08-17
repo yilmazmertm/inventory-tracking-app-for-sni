@@ -38,9 +38,6 @@ public class UserController {
     @PostMapping("/saveUser")
     public String addUser(@ModelAttribute("user") User user, Model theModel) {
         user.setUserRole("ROLE_USER");
-        // ıd burda 0 o yüzden update değilde save yapıyor
-        System.out.println(user.getId());
-        System.out.println(user.getFullName());
         userService.saveUser(user);
         return "confirmation";
     }
@@ -48,7 +45,6 @@ public class UserController {
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId, Model theModel) {
         User theUser = userService.getUserForUpdate(theId);
-        // Buraya geliyor data sıkıntı yok
         theModel.addAttribute("user", theUser);
         return "addUser";
     }

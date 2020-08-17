@@ -45,7 +45,7 @@ public class HomeController {
         theModel.addAttribute("theProduct", product);
         theModel.addAttribute("theUsers", users);
         theModel.addAttribute("user_ids", user_ids);
-        return "addProduct";
+        return "addProductwithBootstrap";
     }
 
     @PostMapping("/saveProduct")
@@ -61,18 +61,6 @@ public class HomeController {
     @GetMapping("/list")
     public String listProducts(Model theModel) {
         List<Product> theProducts = productService.getAllProducts();
-        for (Product theProduct : theProducts) {
-            if (theProduct.getUser().getId() == (0)) {
-                User user = new User();
-                user.setId(99);
-                user.setUserName("Removed User");
-                user.setUserLastName("Removed User");
-                user.setUserRole("Left");
-                theProduct.setUser(user);
-            }
-            System.out.println("girmedi");
-        }
-
         theModel.addAttribute("products", theProducts);
         return "list-products";
     }
