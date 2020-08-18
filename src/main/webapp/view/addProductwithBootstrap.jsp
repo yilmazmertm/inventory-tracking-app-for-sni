@@ -95,7 +95,7 @@
                 <form:input type="text" class="form-control" id="exampleInput" path="setupDateForWindows" />
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Save"/>
+                <input type="submit" class="btn btn-primary" value="Add Product"/>
             </div>
         </form:form>
     </div>

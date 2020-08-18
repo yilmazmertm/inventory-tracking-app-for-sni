@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="../resources/style.css">
+    <link rel="stylesheet" type="text/css" href="../resources/static/style.css">
     <style>
         a, u {
             text-decoration: none;

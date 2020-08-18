@@ -4,31 +4,40 @@
 <html>
 <head>
     <title>List Users Page</title>
-    <link rel="stylesheet" type="text/css" href="../resources/style.css">
+    <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel = "stylesheet">
 </head>
 <body class="list-products">
-<table>
-    <tr>
-        <th>Full Name    </th>
-        <th>Team    </th>
-        <th>Action    </th>
-    </tr>
-
-    <c:forEach var="user" items="${users}">
-        <c:url var="updateLink" value="/user/showFormForUpdate">
-            <c:param name="userId" value="${user.id}" />
-        </c:url>
-        <c:url var="deleteLink" value="/user/delete">
-            <c:param name="userId" value="${user.id}" />
-        </c:url>
-
+<div class="contentContainer">
+    <p>
+        <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new User</a>
+    </p>
+    <table class="table table-hover">
+        <thead>
         <tr>
-            <td> ${user.fullName}     </td>
-            <td> ${user.teamMember}     </td>
-            <td><a href="${updateLink}">    Update</a> - <a href="${deleteLink}">Delete</a></td>
+            <th scope="col">Full Name</th>
+            <th scope="col">Team</th>
+            <th scope="col">Action</th>
         </tr>
-    </c:forEach>
-</table>
-
+        </thead>
+        <tbody>
+        <c:forEach var="user" items="${users}">
+            <c:url var="updateLink" value="/user/showFormForUpdate">
+                <c:param name="userId" value="${user.id}" />
+            </c:url>
+            <c:url var="deleteLink" value="/user/delete">
+                <c:param name="userId" value="${user.id}" />
+            </c:url>
+            <tr>
+                <th scope="row">${user.fullName}</th>
+                <td>${user.teamMember}</td>
+                <td>
+                    <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                    <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -5,45 +5,56 @@
 <head>
     <meta charset="utf-8">
     <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel = "stylesheet">
-    <link rel="stylesheet" type="text/css" href="../resources/style.css">
     <title>Product List Page</title>
 </head>
 <body>
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Owner</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Manufacturer</th>
-        <th scope="col">Model</th>
-        <th scope="col">Memory</th>
-        <th scope="col">Purchase Date</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="product" items="${products}">
-        <c:url var="updateLink" value="/showFormForUpdate">
-            <c:param name="productId" value="${product.id}" />
-        </c:url>
-        <c:url var="deleteLink" value="/delete">
-            <c:param name="productId" value="${product.id}" />
-        </c:url>
-        <tr>
-            <th>${product.owner}</th>
-            <td>${product.productName}</td>
-            <td>${product.manufacturer}</td>
-            <td>${product.model}</td>
-            <td>${product.memoryGb}</td>
-            <td>${product.purchaseDate}</td>
-            <td><a href="${updateLink}"> Update</a> -- <a href="${deleteLink}"> Delete</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-<p>
-    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Üye olun</a>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Ana Sayfaya Dön</a>
-</p>
+<div class="contentContainer">
+    <div class="row">
+        <div class="col-sm-10" id="container" style="border-left: 1px">
+            <p>
+                <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new Product</a>
+            </p>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Memory</th>
+                    <th scope="col">Purchase Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="product" items="${products}">
+                    <c:url var="updateLink" value="/showFormForUpdate">
+                        <c:param name="productId" value="${product.id}" />
+                    </c:url>
+                    <c:url var="deleteLink" value="/delete">
+                        <c:param name="productId" value="${product.id}" />
+                    </c:url>
+                    <tr>
+                        <th>${product.owner}</th>
+                        <td>${product.productName}</td>
+                        <td>${product.manufacturer}</td>
+                        <td>${product.model}</td>
+                        <td>${product.memoryGb}</td>
+                        <td>${product.purchaseDate}</td>
+                        <td>
+                            <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                            <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <p>
+                <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Üye olun</a>
+                <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Ana Sayfaya Dön</a>
+            </p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
