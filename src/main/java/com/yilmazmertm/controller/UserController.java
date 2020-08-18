@@ -39,7 +39,7 @@ public class UserController {
     public String addUser(@ModelAttribute("user") User user, Model theModel) {
         user.setUserRole("ROLE_USER");
         userService.saveUser(user);
-        return "confirmation";
+        return "redirect:/user/list";
     }
 
     @GetMapping("/showFormForUpdate")

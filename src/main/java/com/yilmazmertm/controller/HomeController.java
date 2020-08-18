@@ -38,20 +38,19 @@ public class HomeController {
     public String showProductForm(Model theModel) {
         Product product = new Product();
         List<User> users = userService.getAllUsers();
-        List<Integer> user_ids = new ArrayList<>();
-        for (User value : users) {
-            user_ids.add(value.getId());
-        }
         theModel.addAttribute("theProduct", product);
         theModel.addAttribute("theUsers", users);
-        theModel.addAttribute("user_ids", user_ids);
         return "addProductwithBootstrap";
     }
 
     @PostMapping("/saveProduct")
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
         User userFromDatabase = userService.getUserForUpdate(product.getUser().getId());
-        product.setCreatedBy("admin");
+        if (product.getId() == 0){
+            product.setCreatedBy("createdByAdmin");
+        } else{
+            product.setUpdatedBy("updatedByAdmin");
+        }
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
@@ -75,15 +74,20 @@ public class HomeController {
         theModel.addAttribute("theUsers", users);
         theModel.addAttribute("user_ids", user_ids);
         Product theProduct = productService.getProduct(theId);
-        System.out.println("Show Update içinde : " + theId);
-        System.out.println("Show Update içinde : " + theProduct.getId());
         theModel.addAttribute("theProduct", theProduct);
-        return "addProduct";
+        return "addProductwithBootstrap";
     }
 
     @GetMapping("/delete")
     public String deleteProduct(@RequestParam("productId") int theId) {
         productService.deleteProduct(theId);
         return "redirect:/list";
+    }
+
+    @GetMapping("/detail")
+    public String productDetail(@RequestParam("productId") int theId, Model theModel) {
+        Product theProduct = productService.getProductDetail(theId);
+        theModel.addAttribute("theProduct", theProduct);
+        return "product-detail";
     }
 }

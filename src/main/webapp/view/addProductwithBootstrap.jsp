@@ -19,13 +19,15 @@
     </div>
     <div class="col-sm-8" id="content" style="border-left: 1px;">
         <form:form action="saveProduct" modelAttribute="theProduct" method="post">
-
             <form:hidden path="id" />
+            <form:hidden path="createdBy" />
+            <form:hidden path="updatedBy" />
 
             <div class="form-group">
                 <label for="exampleInput">Product Name : </label>
                 <form:input type="text" class="form-control" id="exampleInput" path="productName" />
             </div>
+
             <div class="form-group">
                 <label for="exampleFormControlInput1">The Current Owner of the Product : </label>
                 <form:select class = "form-control" id="exampleFormControlInput1" path="user.id" items="${theUsers}" itemLabel="FullName" itemValue="Id" />
@@ -103,4 +105,8 @@
     </div>
 </div>
 </body>
+<footer>
+    <script src = "https://code.jquery.com/jquery.js"></script>
+    <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</footer>
 </html>

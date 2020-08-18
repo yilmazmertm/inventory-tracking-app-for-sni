@@ -16,4 +16,5 @@ public interface DAO {
     void deleteProduct(int theId);
 
 
+    Product getProductDetail(int theId);
 }

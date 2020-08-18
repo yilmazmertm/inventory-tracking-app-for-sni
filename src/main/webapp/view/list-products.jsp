@@ -31,6 +31,9 @@
                     <c:url var="updateLink" value="/showFormForUpdate">
                         <c:param name="productId" value="${product.id}" />
                     </c:url>
+                    <c:url var="detailLink" value="/detail">
+                        <c:param name="productId" value="${product.id}" />
+                    </c:url>
                     <c:url var="deleteLink" value="/delete">
                         <c:param name="productId" value="${product.id}" />
                     </c:url>
@@ -43,6 +46,7 @@
                         <td>${product.purchaseDate}</td>
                         <td>
                             <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                            <a href="${detailLink}" class="btn btn-outline-info" role="button" aria-pressed="true">Detail</a>
                             <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
                         </td>
                     </tr>

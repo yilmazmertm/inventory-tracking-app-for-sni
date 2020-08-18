@@ -34,8 +34,7 @@ public class DAOImpl implements DAO{
     @Override
     public Product getProduct(int theId) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Product product = currentSession.get(Product.class, theId);
-        return product;
+        return currentSession.get(Product.class, theId);
     }
 
     @Override
@@ -44,6 +43,14 @@ public class DAOImpl implements DAO{
         Query theQuery = currentSession.createQuery("delete from Product where id=:productId");
         theQuery.setParameter("productId", theId);
         theQuery.executeUpdate();
+    }
+
+    @Override
+    public Product getProductDetail(int theId) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<Product> theQuery = currentSession.createQuery("from Product where id=:productId", Product.class);
+        theQuery.setParameter("productId", theId);
+        return theQuery.getSingleResult();
     }
 
 
