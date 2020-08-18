@@ -27,6 +27,39 @@ public class User {
     @Column(name = "team")
     private String teamMember;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "active")
+    private String active;
+
+    @Column(name = "password")
+    private String password;
+
     public String getTeamMember() {
         return teamMember;
     }

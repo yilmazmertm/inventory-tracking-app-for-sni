@@ -5,6 +5,10 @@ import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -44,12 +48,15 @@ public class HomeController {
     }
 
     @PostMapping("/saveProduct")
-    public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel) {
+    public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel, Authentication authentication) {
+
+
+
         User userFromDatabase = userService.getUserForUpdate(product.getUser().getId());
         if (product.getId() == 0){
-            product.setCreatedBy("createdByAdmin");
+            product.setCreatedBy(authentication.getName());
         } else{
-            product.setUpdatedBy("updatedByAdmin");
+            product.setUpdatedBy(authentication.getName());
         }
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);

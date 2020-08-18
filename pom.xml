@@ -26,6 +26,21 @@
       <version>5.2.8.RELEASE</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>5.3.4.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>5.3.4.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>5.3.4.RELEASE</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
       <version>5.2.7.RELEASE</version>
@@ -34,6 +49,13 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>5.4.18.Final</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>

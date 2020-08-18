@@ -14,6 +14,11 @@
         <h2>Fill the form to enter a new User</h2>
 
         <form:hidden path="id" />
+        <form:hidden path="userRole" />
+        <form:hidden path="active" />
+        <form:hidden path="password" />
+
+
         <div class="form-group">
             <label for="exampleInput">First Name : </label>
             <form:input type="text" class="form-control" id="exampleInput" path="userName" />
@@ -21,6 +26,10 @@
         <div class="form-group">
             <label for="exampleInput">Last name : </label>
             <form:input type="text" class="form-control" id="exampleInput" path="userLastName" />
+        </div>
+        <div class="form-group">
+            <label for="exampleInput">Email : </label>
+            <form:input type="email" class="form-control" id="exampleInput" path="email" />
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Team at the Company</label>
