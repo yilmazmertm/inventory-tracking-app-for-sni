@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,12 @@
                 </li>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link" href="/perform_logout">Logout</a>
+                        <p class="nav-link"> Welcome <sec:authentication property="name"/></p>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href='<spring:url value="/perform_logout"/>'>Logout</a>
                     </li>
                 </sec:authorize>
             </ul>

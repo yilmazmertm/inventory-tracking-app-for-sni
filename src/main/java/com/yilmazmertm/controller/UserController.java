@@ -1,5 +1,6 @@
 package com.yilmazmertm.controller;
 
+import com.yilmazmertm.entity.Product;
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
@@ -67,5 +68,12 @@ public class UserController {
         user.setActive("true");
         userService.saveUser(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/detail")
+    public String userDetail(@RequestParam("userId") int theId, Model theModel) {
+        User theUser = userService.getUser(theId);
+        theModel.addAttribute("theUser", theUser);
+        return "user-detail";
     }
 }
