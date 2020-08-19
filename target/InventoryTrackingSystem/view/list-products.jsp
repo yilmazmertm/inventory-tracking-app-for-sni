@@ -61,9 +61,6 @@
                 </tbody>
             </table>
             <p>
-                <sec:authorize access="hasRole('ADMIN')">
-                    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Üye Ekleyin</a>
-                </sec:authorize>
                 <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Ana Sayfaya Dön</a>
             </p>
         </div>

@@ -35,7 +35,6 @@ public class UserDAOImpl implements UserDAO{
     public User getUser(int user_id) {
         Session currentSession = sessionFactory.getCurrentSession();
         Query<User> theQuery = currentSession.createQuery("from User where id=:user_id", User.class);
-        System.out.println(user_id);
         theQuery.setParameter("user_id", user_id);
         return theQuery.getSingleResult();
     }
@@ -45,6 +44,19 @@ public class UserDAOImpl implements UserDAO{
         Session currentSession = sessionFactory.getCurrentSession();
         User user = currentSession.get(User.class, theId);
         return user;
+    }
+
+    @Override
+    public boolean emailValidation(String email) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<User> theQuery = currentSession.createQuery("from User where email=:email", User.class);
+        theQuery.setParameter("email", email);
+        System.out.println("Result list size : " + theQuery.getResultList().size());
+        if (theQuery.getResultList().size() == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

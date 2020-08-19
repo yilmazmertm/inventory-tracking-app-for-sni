@@ -16,7 +16,7 @@
 
 <body class="text-center">
 <form:form action="/perform_login" method="post" class="form-signin">
-    <img class="mb-4" src="../resources/static/logo-sni.png" alt="" width="72" height="72">
+    <img class="mb-4" src="../resources/static/logo-sni.png" alt="" width="98" height="77">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <label for="inputEmail" class="sr-only">Email address</label>
@@ -28,10 +28,11 @@
         <c:remove var="message" scope="session" />
         <br><br>
     </c:if>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <br>
     <div class="checkbox mb-3">
         <a href="${pageContext.request.contextPath}/user/getRegister" class="btn btn-secondary">Click to register</a>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form:form>
 </body>
 </html>

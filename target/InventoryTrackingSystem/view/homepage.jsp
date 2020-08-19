@@ -21,22 +21,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <sec:authorize access="hasRole('ADMIN')">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/addProduct">Add Product</a>
-                    </li>
-                </sec:authorize>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/list">List Products</a>
-                </li>
-                <sec:authorize access="hasRole('ADMIN')">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/user/addUser">Add User</a>
-                    </li>
-                </sec:authorize>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/user/list">List Users</a>
-                </li>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
                         <p class="nav-link"> Welcome <sec:authentication property="name"/></p>

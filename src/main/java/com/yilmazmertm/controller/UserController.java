@@ -65,12 +65,16 @@ public class UserController {
 
     @PostMapping("/doRegister")
     public String doRegister(@ModelAttribute("user") User user, Model theModel, BindingResult bindingResult) {
-        String message = "You have successfully registered.Login with these information :) ";
+        boolean isUnique = userService.emailValidation(user.getEmail());
 
+
+
+        String message = "You have successfully registered.Login with these information :) ";
         if (bindingResult.hasErrors()){
             message = "Oops ! Something wrong, check all the information again when registering.";
         }
         theModel.addAttribute("message", message);
+        theModel.addAttribute("isUnique", isUnique);
         user.setUserRole("ROLE_USER");
         user.setActive("true");
         userService.saveUser(user);

@@ -45,4 +45,9 @@ public class UserServiceImpl implements UserService{
     public User getUserForUpdate(int theId) {
         return userDao.getUserForUpdate(theId);
     }
+
+    @Override
+    public boolean emailValidation(String email) {
+        return userDao.emailValidation(email);
+    }
 }

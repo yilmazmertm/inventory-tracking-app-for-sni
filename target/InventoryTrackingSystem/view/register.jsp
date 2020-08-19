@@ -51,6 +51,11 @@
         <c:remove var="message" scope="session" />
         <br><br>
     </c:if>
+    <c:if test="${not empty isUnique}">
+        <span style="color:green"><c:out value="${isUnique}"/></span>
+        <c:remove var="message" scope="session" />
+        <br><br>
+    </c:if>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <br><br>

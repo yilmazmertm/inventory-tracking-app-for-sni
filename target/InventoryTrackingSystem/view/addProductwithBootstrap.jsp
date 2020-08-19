@@ -11,7 +11,6 @@
 <hr>
 <br>
 <div class="container" style="place-content: center;">
-    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Üye Ekleyin</a>
     <div class="col-sm-2">
 
     </div>
@@ -25,10 +24,15 @@
                 <label for="exampleInput">Product Name : </label>
                 <form:input type="text" class="form-control" id="exampleInput" path="productName" />
             </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">The Current Owner of the Product : </label>
-                <form:select class = "form-control" id="exampleFormControlInput1" path="user.id" items="${theUsers}" itemLabel="FullName" itemValue="Id" />
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="exampleFormControlInput1">The Current Owner of the Product : </label>
+                    <form:select class = "form-control" id="exampleFormControlInput1" path="user.id" items="${theUsers}" itemLabel="FullName" itemValue="Id" />
+                </div>
+                <div class="col-sm-auto">
+                    <br>
+                    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary" role="button" aria-pressed="true">Listede isim bulunmuyor ise üye ekleyin</a>
+                </div>
             </div>
             <div class="form-group">
                 <label for="exampleInput">Manufacturer : </label>

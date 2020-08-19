@@ -16,5 +16,6 @@ public interface UserDAO {
 
     User getUserForUpdate(int theId);
 
+    boolean emailValidation(String email);
 
 }
