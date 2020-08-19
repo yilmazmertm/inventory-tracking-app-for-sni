@@ -6,6 +6,7 @@ import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,11 +64,17 @@ public class UserController {
     }
 
     @PostMapping("/doRegister")
-    public String doRegister(@ModelAttribute("user") User user, Model theModel) {
+    public String doRegister(@ModelAttribute("user") User user, Model theModel, BindingResult bindingResult) {
+        String message = "You have successfully registered.Login with these information :) ";
+
+        if (bindingResult.hasErrors()){
+            message = "Oops ! Something wrong, check all the information again when registering.";
+        }
+        theModel.addAttribute("message", message);
         user.setUserRole("ROLE_USER");
         user.setActive("true");
         userService.saveUser(user);
-        return "redirect:/login";
+        return "register";
     }
 
     @GetMapping("/detail")

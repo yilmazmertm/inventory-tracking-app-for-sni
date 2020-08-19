@@ -29,7 +29,7 @@
         <br><br>
     </c:if>
     <div class="checkbox mb-3">
-        <a href="/user/getRegister" class="btn btn-secondary">Click to register</a>
+        <a href="${pageContext.request.contextPath}/user/getRegister" class="btn btn-secondary">Click to register</a>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form:form>

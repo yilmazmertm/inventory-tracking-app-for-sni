@@ -21,23 +21,23 @@
 
     <div class="form-group">
         <label for="exampleInput">First Name : </label>
-        <form:input type="text" class="form-control" id="exampleInput" path="userName" />
+        <form:input type="text" class="form-control" id="exampleInput" path="userName" required="required"/>
     </div>
     <div class="form-group">
         <label for="exampleInput">Last name : </label>
-        <form:input type="text" class="form-control" id="exampleInput" path="userLastName" />
+        <form:input type="text" class="form-control" id="exampleInput" path="userLastName" required="required"/>
     </div>
     <div class="form-group">
         <label for="exampleInput">Email : </label>
-        <form:input type="email" class="form-control" id="exampleInput" path="email" />
+        <form:input type="email" class="form-control" id="exampleInput" path="email" required="required"/>
     </div>
     <div class="form-group">
         <label for="exampleInput">Password : </label>
-        <form:input type="password" class="form-control" id="exampleInput" path="password" />
+        <form:input type="password" class="form-control" id="exampleInput" path="password" required="required"/>
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Team at the Company</label>
-        <form:select path="teamMember" class="form-control" id="exampleFormControlSelect1">
+        <form:select path="teamMember" class="form-control" id="exampleFormControlSelect1" >
             <form:option value="Java" />
             <form:option value="Abap" />
             <form:option value="Destek" />
@@ -46,7 +46,17 @@
             <form:option value="Stajyer" />
         </form:select>
     </div>
+    <c:if test="${not empty message}">
+        <span style="color:green"><c:out value="${message}"/></span>
+        <c:remove var="message" scope="session" />
+        <br><br>
+    </c:if>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <br><br>
+    <div class="checkbox mb-3">
+        <a href="${pageContext.request.contextPath}/login" class="btn btn-secondary">Go to Login Page</a>
+    </div>
 
 </form:form>
 </body>

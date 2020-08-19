@@ -39,12 +39,12 @@
                 </li>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link" href='<spring:url value="/perform_logout"/>'>Logout</a>
+                        <p class="nav-link"> Welcome <sec:authentication property="name"/></p>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <p class="nav-link"> Welcome <sec:authentication property="name"/></p>
+                        <a class="nav-link" href='<spring:url value="/perform_logout"/>'>Logout</a>
                     </li>
                 </sec:authorize>
             </ul>
