@@ -27,6 +27,18 @@ public class User {
     @Column(name = "team")
     private String teamMember;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "active")
+    private String active;
+
+    @Column(name = "password")
+    private String password;
+
+    public User() {
+    }
+
     public String getEmail() {
         return email;
     }
@@ -51,25 +63,12 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "active")
-    private String active;
-
-    @Column(name = "password")
-    private String password;
-
     public String getTeamMember() {
         return teamMember;
     }
 
     public void setTeamMember(String teamMember) {
         this.teamMember = teamMember;
-    }
-
-    public User() {
-
     }
 
     public int getId() {

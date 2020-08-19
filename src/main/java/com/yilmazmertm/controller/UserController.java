@@ -37,7 +37,6 @@ public class UserController {
 
     @PostMapping("/saveUser")
     public String addUser(@ModelAttribute("user") User user, Model theModel) {
-        user.setUserRole("ROLE_USER");
         userService.saveUser(user);
         return "redirect:/user/list";
     }
@@ -53,5 +52,20 @@ public class UserController {
     public String deleteUser(@RequestParam("userId") int theId) {
         userService.deleteUser(theId);
         return "redirect:/user/list";
+    }
+
+    @GetMapping({"/getRegister", "getRegister"})
+    public String getRegistirationForm(Model theModel) {
+        User user = new User();
+        theModel.addAttribute("user", user);
+        return "register";
+    }
+
+    @PostMapping("/doRegister")
+    public String doRegister(@ModelAttribute("user") User user, Model theModel) {
+        user.setUserRole("ROLE_USER");
+        user.setActive("true");
+        userService.saveUser(user);
+        return "redirect:/login";
     }
 }

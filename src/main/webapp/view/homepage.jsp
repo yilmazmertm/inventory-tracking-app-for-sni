@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +20,27 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/addProduct">Add Product</a>
-                </li>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/addProduct">Add Product</a>
+                    </li>
+                </sec:authorize>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/list">List Products</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/user/addUser">Add User</a>
-                </li>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/user/addUser">Add User</a>
+                    </li>
+                </sec:authorize>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/user/list">List Users</a>
                 </li>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/perform_logout">Logout</a>
+                    </li>
+                </sec:authorize>
             </ul>
         </div>
     </div>
@@ -50,6 +60,7 @@
 
     <h1 class="my-4" style="text-align: center">Welcome to SNI Inventory Tracking System</h1>
     <div class="row">
+        <sec:authorize access="hasRole('ADMIN')">
         <div class="col-lg-3 mb-3">
             <div class="card h-100">
                 <h4 class="card-header">Add Product</h4>
@@ -61,42 +72,56 @@
                 </div>
             </div>
         </div>
+        </sec:authorize>
+        <sec:authorize access="hasRole('ADMIN')">
         <div class="col-lg-3 mb-3">
-            <div class="card h-100">
-                <h4 class="card-header">List Products</h4>
-                <div class="card-body">
-                    <p class="card-text">You can list all of the items at the company. This list will give you a information about who owns which item.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="${pageContext.request.contextPath}/list" class="btn btn-primary">Go to Page</a>
+            </sec:authorize>
+            <sec:authorize access="hasRole('USER')">
+            <div class="col-lg-6 mb-6">
+                </sec:authorize>
+                <div class="card h-100">
+                    <h4 class="card-header">List Products</h4>
+                    <div class="card-body">
+                        <p class="card-text">You can list all of the items at the company. This list will give you a information about who owns which item.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${pageContext.request.contextPath}/list" class="btn btn-primary">Go to Page</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 mb-3">
-            <div class="card h-100">
-                <h4 class="card-header">Add User</h4>
-                <div class="card-body">
-                    <p class="card-text">You can add a new User if somebody joins the company.</p>
+            <sec:authorize access="hasRole('ADMIN')">
+                <div class="col-lg-3 mb-3">
+                    <div class="card h-100">
+                        <h4 class="card-header">Add User</h4>
+                        <div class="card-body">
+                            <p class="card-text">You can add a new User if somebody joins the company.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary">Go to page</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary">Go to page</a>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ADMIN')">
+            <div class="col-lg-3 mb-3">
+                </sec:authorize>
+                <sec:authorize access="hasRole('USER')">
+                <div class="col-lg-6 mb-6">
+                    </sec:authorize>
+
+                    <div class="card h-100">
+                        <h4 class="card-header">List Users</h4>
+                        <div class="card-body">
+                            <p class="card-text">You can list the users here If you want to know more about a spesific User.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="${pageContext.request.contextPath}/user/list" class="btn btn-primary">Go to page</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <script src="../resources/static/jquery/jquery.min.js"></script>
+            <script src="../resources/static/bootstrap/js/bootstrap.bundle.min.js"></script>
         </div>
-        <div class="col-lg-3 mb-3">
-            <div class="card h-100">
-                <h4 class="card-header">List Users</h4>
-                <div class="card-body">
-                    <p class="card-text">You can list the users here If you want to know more about a spesific User.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="${pageContext.request.contextPath}/user/list" class="btn btn-primary">Go to page</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="../resources/static/jquery/jquery.min.js"></script>
-    <script src="../resources/static/bootstrap/js/bootstrap.bundle.min.js"></script>
-</div>
 </body>
 </html>

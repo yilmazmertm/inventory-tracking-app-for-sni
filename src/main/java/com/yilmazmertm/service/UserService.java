@@ -1,6 +1,5 @@
 package com.yilmazmertm.service;
 
-import com.yilmazmertm.DAOLayer.UserDAO;
 import com.yilmazmertm.entity.User;
 
 import java.util.List;

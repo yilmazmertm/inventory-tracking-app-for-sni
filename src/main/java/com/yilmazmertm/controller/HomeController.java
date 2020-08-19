@@ -50,14 +50,13 @@ public class HomeController {
     @PostMapping("/saveProduct")
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel, Authentication authentication) {
 
-
-
         User userFromDatabase = userService.getUserForUpdate(product.getUser().getId());
         if (product.getId() == 0){
             product.setCreatedBy(authentication.getName());
         } else{
             product.setUpdatedBy(authentication.getName());
         }
+
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);

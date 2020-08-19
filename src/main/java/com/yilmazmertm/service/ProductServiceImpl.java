@@ -2,7 +2,6 @@ package com.yilmazmertm.service;
 
 import com.yilmazmertm.DAOLayer.DAO;
 import com.yilmazmertm.entity.Product;
-import com.yilmazmertm.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

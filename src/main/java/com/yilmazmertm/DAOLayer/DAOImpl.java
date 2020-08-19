@@ -1,7 +1,6 @@
 package com.yilmazmertm.DAOLayer;
 
 import com.yilmazmertm.entity.Product;
-import com.yilmazmertm.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

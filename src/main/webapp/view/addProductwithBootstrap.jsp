@@ -9,11 +9,9 @@
 <body>
 <h2>Lütfen ürün ekleyiniz, ürünün kime ait olacağını dikkatle seçiniz.</h2>
 <hr>
-<p>
-<h4> Kullanıcı Listesinde Adınız yok ise, hemen kayıt yaptırın</h4>
 <br>
 <div class="container" style="place-content: center;">
-    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Üye olun</a>
+    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Üye Ekleyin</a>
     <div class="col-sm-2">
 
     </div>

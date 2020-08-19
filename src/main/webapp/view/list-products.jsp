@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -12,7 +13,9 @@
     <div class="row">
         <div class="col-sm-10" id="container" style="border-left: 1px">
             <p>
-                <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new Product</a>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new Product</a>
+                </sec:authorize>
             </p>
             <table class="table table-hover">
                 <thead>
@@ -45,16 +48,22 @@
                         <td>${product.memoryGb}</td>
                         <td>${product.purchaseDate}</td>
                         <td>
-                            <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                            <sec:authorize access="hasRole('ADMIN')">
+                                <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                            </sec:authorize>
                             <a href="${detailLink}" class="btn btn-outline-info" role="button" aria-pressed="true">Detail</a>
-                            <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                            <sec:authorize access="hasRole('ADMIN')">
+                                <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                            </sec:authorize>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
             <p>
-                <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Üye olun</a>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Üye Ekleyin</a>
+                </sec:authorize>
                 <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Ana Sayfaya Dön</a>
             </p>
         </div>

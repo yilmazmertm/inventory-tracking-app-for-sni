@@ -18,22 +18,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
         .dataSource(dataSource)
         .usersByUsernameQuery("select email,password,active from user where email=?")
         .authoritiesByUsernameQuery("select email,user_role from user where email=?");
-        ;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").hasAnyRole("ADMIN")
+                .antMatchers("/").hasAnyRole("ADMIN", "USER")
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("changedUsername")
+                .passwordParameter("changedPassword")
+                .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/login?error=true")
+                .and()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login");
     }
 
     @Bean

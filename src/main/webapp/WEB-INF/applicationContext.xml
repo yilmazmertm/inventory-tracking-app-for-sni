@@ -12,6 +12,10 @@
         <property name="prefix" value="/view/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <mvc:view-controller path="/login" view-name="login" />
+
+
     <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
