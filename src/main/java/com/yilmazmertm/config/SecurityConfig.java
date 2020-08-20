@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").hasAnyRole("ADMIN", "USER")
-                .and()
+                .and().csrf().disable()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("changedUsername")

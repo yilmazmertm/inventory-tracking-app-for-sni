@@ -34,7 +34,9 @@ public class HomeController {
     }
 
     @RequestMapping({"", "/"})
-    public String showHomePage() {
+    public String showHomePage(Model theModel) {
+        User user = new User();
+        theModel.addAttribute("user", user);
         return "homepage";
     }
 

@@ -4,15 +4,17 @@ import com.yilmazmertm.entity.Product;
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @RequestMapping({"user", "/user"})
-@Controller
+@RestController
 public class UserController {
 
     private final ProductService productService;
@@ -34,14 +36,29 @@ public class UserController {
     public String showUserForm(Model theModel) {
         User user = new User();
         theModel.addAttribute("user", user);
-        return "addUser";
+        return "homepage";
     }
 
     @PostMapping("/saveUser")
-    public String addUser(@ModelAttribute("user") User user, Model theModel) {
+    public String addUser(@ModelAttribute("user") User user, Model theModel, BindingResult bindingResult) {
+
+        String message = "You have successfully registered.Login with these information :) ";
+        if (bindingResult.hasErrors()){
+            message = "Oops ! Something wrong, check all the information again when adding.";
+        }
+        theModel.addAttribute("message", message);
+
         userService.saveUser(user);
-        return "redirect:/user/list";
+        return "homepage";
     }
+
+    @PostMapping(value = "/saveAjax", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String saveValue(@RequestParam("email") String email) {
+        System.out.println("AJAX VALUE :" + email);
+        return "homepage";
+    }
+
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId, Model theModel) {

@@ -1,6 +1,6 @@
 package com.yilmazmertm.service;
 
-import com.yilmazmertm.DAOLayer.DAO;
+import com.yilmazmertm.DAOLayer.ProductDAO;
 import com.yilmazmertm.entity.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService{
 
-    DAO productDao;
+    ProductDAO productDao;
 
-    public ProductServiceImpl(DAO productDao) {
+    public ProductServiceImpl(ProductDAO productDao) {
         this.productDao = productDao;
     }
 

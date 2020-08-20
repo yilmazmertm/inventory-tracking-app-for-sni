@@ -1,5 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,35 @@
 
     <title>SNI Inventory Tracking App</title>
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="../resources/static/new-style.css" rel="stylesheet">
+
+    <script>
+        $(document).ready(function(){
+            var $email = $('#inputEmail');
+            $("#submitButtonForEmail").click(function(){
+                event.preventDefault();
+
+                var email = $email.val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/user/saveAjax',
+                    data: {
+                        email: email
+                    },
+                    success: function (emailResponse) {
+                        output = '<p>Thanks, we will contact you soon!</p>' + emailResponse;
+                    },
+                    error: function () {
+                        alert('error saving e-mail');
+                    }
+                })
+
+            });
+        });
+    </script>
+
 </head>
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -47,7 +77,13 @@
     </div>
 </header>
 <div class="container">
-
+    <p style="text-align: center">
+        <c:if test="${not empty message}">
+            <span style="color:green"><c:out value="${message}"/></span>
+            <c:remove var="message" scope="session" />
+            <br><br>
+        </c:if>
+    </p>
     <h1 class="my-4" style="text-align: center">Welcome to SNI Inventory Tracking System</h1>
     <div class="row">
         <sec:authorize access="hasRole('ADMIN')">
@@ -79,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <sec:authorize access="hasRole('ADMIN')">
+
                 <div class="col-lg-3 mb-3">
                     <div class="card h-100">
                         <h4 class="card-header">Add User</h4>
@@ -87,11 +123,34 @@
                             <p class="card-text">You can add a new User if somebody joins the company.</p>
                         </div>
                         <div class="card-footer">
-                            <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary">Go to page</a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Click to add a User</button>
                         </div>
                     </div>
                 </div>
-            </sec:authorize>
+
+                <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Fill the form to enter a new User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <label for="inputEmail" class="sr-only">Email address</label>
+                                <input type="email" id="inputEmail" name="changedUsername" class="form-control" placeholder="Email address" required autofocus>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="submitButtonForEmail" type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             <sec:authorize access="hasRole('ADMIN')">
             <div class="col-lg-3 mb-3">
                 </sec:authorize>
