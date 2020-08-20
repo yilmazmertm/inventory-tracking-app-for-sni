@@ -54,8 +54,14 @@ public class UserController {
 
     @PostMapping(value = "/saveAjax", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String saveValue(@RequestParam("email") String email) {
-        System.out.println("AJAX VALUE :" + email);
+    public String saveValue(@RequestParam("userName") String userName,@RequestParam("userLastName") String userLastName,
+                            @RequestParam("userRole") String userRole,@RequestParam("team") String team,
+                            @RequestParam("email") String email,@RequestParam("active") String active,@RequestParam("password") String password) {
+        User user = new User();
+        user.setUserName(userName);user.setUserLastName(userLastName);user.setUserRole(userRole);
+        user.setTeamMember(team);user.setEmail(email);user.setActive(active);user.setPassword(password);
+
+        userService.saveUser(user);
         return "homepage";
     }
 

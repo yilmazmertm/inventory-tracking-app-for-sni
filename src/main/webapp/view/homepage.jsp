@@ -17,17 +17,35 @@
 
     <script>
         $(document).ready(function(){
+            var $userName = $('#inputFirstName');
+            var $userLastName = $('#inputLastName');
+            var $userRole = $('#inputRole');
+            var $team = $('#inputTeamRole');
             var $email = $('#inputEmail');
+            var $active = $('#inputActive');
+            var $password = $('#inputPassword');
+
             $("#submitButtonForEmail").click(function(){
                 event.preventDefault();
-
+                var userName = $userName.val();
+                var userLastName = $userLastName.val();
+                var userRole = $userRole.val();
+                var team = $team.val();
                 var email = $email.val();
+                var active = $active.val();
+                var password = $password.val();
 
                 $.ajax({
                     type: 'POST',
                     url: '/user/saveAjax',
                     data: {
-                        email: email
+                        userName:userName,
+                        userLastName:userLastName,
+                        userRole:userRole,
+                        team:team,
+                        email: email,
+                        active:active,
+                        password:password
                     },
                     success: function (emailResponse) {
                         output = '<p>Thanks, we will contact you soon!</p>' + emailResponse;
@@ -115,42 +133,76 @@
                     </div>
                 </div>
             </div>
-
-                <div class="col-lg-3 mb-3">
-                    <div class="card h-100">
-                        <h4 class="card-header">Add User</h4>
-                        <div class="card-body">
-                            <p class="card-text">You can add a new User if somebody joins the company.</p>
+            <div class="col-lg-3 mb-3">
+                <div class="card h-100">
+                    <h4 class="card-header">Add User</h4>
+                    <div class="card-body">
+                        <p class="card-text">You can add a new User if somebody joins the company.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Click to add a User</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Fill the form to enter a new User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Click to add a User</button>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="inputFirstName" class="col-form-label">First Name</label>
+                                <input type="email" id="inputFirstName" class="form-control" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputLastName" class="col-form-label">Last Name</label>
+                                <input type="email" id="inputLastName" class="form-control" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-form-label">User Role</label>
+                                <select class="form-control" id="inputRole">
+                                    <option value="ROLE_ADMIN">Admin</option>
+                                    <option value="ROLE_USER">User</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTeamRole" class="col-form-label">Team</label>
+                                <select class="form-control" id="inputTeamRole">
+                                    <option value="Java">Java</option>
+                                    <option value="Abap">Abap</option>
+                                    <option value="Destek">Destek</option>
+                                    <option value="Bilgi Islem">Bilgi Islem</option>
+                                    <option value="IK">IK</option>
+                                    <option value="Stajyer">Stajyer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-form-label">Email address</label>
+                                <input type="email" id="inputEmail" name="changedUsername" class="form-control" placeholder="please enter a valid e-mail adress" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-form-label" >Password</label>
+                                <input type="password" id="inputPassword" class="form-control" name="changedPassword" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputActive" class="col-form-label">Status</label>
+                                <select class="form-control" id="inputActive">
+                                    <option value="true">Active</option>
+                                    <option value="false">Disabled</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="submitButtonForEmail" type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Fill the form to enter a new User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <label for="inputEmail" class="sr-only">Email address</label>
-                                <input type="email" id="inputEmail" name="changedUsername" class="form-control" placeholder="Email address" required autofocus>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button id="submitButtonForEmail" type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            </div>
             <sec:authorize access="hasRole('ADMIN')">
             <div class="col-lg-3 mb-3">
                 </sec:authorize>
