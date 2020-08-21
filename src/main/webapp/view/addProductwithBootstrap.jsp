@@ -4,7 +4,16 @@
 <html>
 <head>
     <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel = "stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Add an Inventory Item</title>
+
+    <script>
+        $(document).ready(function() {
+            $("#showModal").click(function () {
+                window.location.href = '/#openModal'
+            });
+        });
+    </script>
 </head>
 <body>
 <h2>Lütfen ürün ekleyiniz, ürünün kime ait olacağını dikkatle seçiniz.</h2>
@@ -31,7 +40,7 @@
                 </div>
                 <div class="col-sm-auto">
                     <br>
-                    <a href="${pageContext.request.contextPath}/user/addUser" class="btn btn-primary" role="button" aria-pressed="true">Listede isim bulunmuyor ise üye ekleyin</a>
+                    <button id="showModal" type="button" class="btn btn-primary">Kullanıcı Ekle</button>
                 </div>
             </div>
             <div class="form-group">

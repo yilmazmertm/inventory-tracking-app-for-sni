@@ -15,8 +15,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="../resources/static/new-style.css" rel="stylesheet">
 
+    <!-- Jquery Scripts -->
+    <!-- Jquery Scripts -->
     <script>
         $(document).ready(function(){
+            $('#scrollToTop').hide();
+
+            if (window.location.hash === '#openModal') {
+                $('#addUserModal').modal('show');;
+            }
+
+            $(window).scroll(function(){
+                if ($(this).scrollTop() > 75) {
+                    $('#scrollToTop').fadeIn();
+                } else {
+                    $('#scrollToTop').fadeOut();
+                }
+            });
+
+            $('#scrollToTop').click(function(){
+                $('html, body').animate({scrollTop : 0},800);
+                return false;
+            });
+
             var $userName = $('#inputFirstName');
             var $userLastName = $('#inputLastName');
             var $userRole = $('#inputRole');
@@ -25,7 +46,7 @@
             var $active = $('#inputActive');
             var $password = $('#inputPassword');
 
-            $("#submitButtonForEmail").click(function(){
+            $("#submitButtonForForm").click(function(){
                 event.preventDefault();
                 var userName = $userName.val();
                 var userLastName = $userLastName.val();
@@ -37,7 +58,14 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/user/saveAjax',
+                    url: '/user/saveAjaxJson',
+                    contentType:'application/json',
+                    dataType: "json",
+                    beforeSend: function(x) {
+                        if (x && x.overrideMimeType) {
+                            x.overrideMimeType("application/j-son;charset=UTF-8");
+                        }
+                    },
                     data: {
                         userName:userName,
                         userLastName:userLastName,
@@ -47,42 +75,50 @@
                         active:active,
                         password:password
                     },
-                    success: function (emailResponse) {
-                        output = '<p>Thanks, we will contact you soon!</p>' + emailResponse;
+                    success: function (response) {
+                        alert('success')
+                        $('#addUserModal').modal('hide');
+                        console.log(response)
                     },
                     error: function () {
-                        alert('error saving e-mail');
+                        alert('error saving user');
                     }
                 })
 
             });
         });
     </script>
-
+    <!-- Jquery Scripts -->
+    <!-- Jquery Scripts -->
 </head>
 <body>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Inventory Tracking App</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item">
-                        <p class="nav-link"> Welcome <sec:authentication property="name"/></p>
-                    </li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item">
-                        <a class="nav-link" href='<spring:url value="/perform_logout"/>'>Logout</a>
-                    </li>
-                </sec:authorize>
-            </ul>
-        </div>
+<!-- Navigation Bar -->
+<!-- Navigation Bar -->
+<nav id="navbar-example2" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Inventory Tracking App</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-primary" id="scrollToTop" href="#">Scroll to Top</a>
+            </li>
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
+                    <p class="nav-link"> Welcome <sec:authentication property="name"/></p>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href='<spring:url value="/perform_logout"/>'>Logout</a>
+                </li>
+            </sec:authorize>
+        </ul>
     </div>
 </nav>
+<!-- Navigation Bar -->
+<!-- Navigation Bar -->
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
@@ -105,17 +141,17 @@
     <h1 class="my-4" style="text-align: center">Welcome to SNI Inventory Tracking System</h1>
     <div class="row">
         <sec:authorize access="hasRole('ADMIN')">
-        <div class="col-lg-3 mb-3">
-            <div class="card h-100">
-                <h4 class="card-header">Add Product</h4>
-                <div class="card-body">
-                    <p class="card-text">You can add a new Product here if the company bought new item. You should carefully add all the information related to the product.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary">Go to Page</a>
+            <div class="col-lg-3 mb-3">
+                <div class="card h-100">
+                    <h4 class="card-header">Add Product</h4>
+                    <div class="card-body">
+                        <p class="card-text">You can add a new Product here if the company bought new item. You should carefully add all the information related to the product.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary">Add Product</a>
+                    </div>
                 </div>
             </div>
-        </div>
         </sec:authorize>
         <sec:authorize access="hasRole('ADMIN')">
         <div class="col-lg-3 mb-3">
@@ -129,7 +165,7 @@
                         <p class="card-text">You can list all of the items at the company. This list will give you a information about who owns which item.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="${pageContext.request.contextPath}/list" class="btn btn-primary">Go to Page</a>
+                        <a href="#listProductsContainer" class="btn btn-primary">List Products</a>
                     </div>
                 </div>
             </div>
@@ -144,6 +180,8 @@
                     </div>
                 </div>
             </div>
+            <!-- Add User Modal -->
+            <!-- Add User Modal -->
             <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -197,12 +235,15 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="submitButtonForEmail" type="button" class="btn btn-primary">Save changes</button>
+                                <button id="submitButtonForForm" type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Add User Modal -->
+            <!-- Add User Modal -->
+
             <sec:authorize access="hasRole('ADMIN')">
             <div class="col-lg-3 mb-3">
                 </sec:authorize>
@@ -216,13 +257,122 @@
                             <p class="card-text">You can list the users here If you want to know more about a spesific User.</p>
                         </div>
                         <div class="card-footer">
-                            <a href="${pageContext.request.contextPath}/user/list" class="btn btn-primary">Go to page</a>
+                            <a href="#listUserContainer" class="btn btn-primary" type="button">List Users</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <script src="../resources/static/jquery/jquery.min.js"></script>
-            <script src="../resources/static/bootstrap/js/bootstrap.bundle.min.js"></script>
         </div>
+    </div>
+</div>
+
+<!-- User List Scroll -->
+<!-- User List Scroll -->
+
+<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+    <div class="container" style="padding-top: 500px; margin-bottom: 500px" id="listUserContainer">
+        <div class="contentContainer">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="user" items="${users}">
+                    <c:url var="updateLink" value="/user/showFormForUpdate">
+                        <c:param name="userId" value="${user.id}" />
+                    </c:url>
+                    <c:url var="deleteLink" value="/user/delete">
+                        <c:param name="userId" value="${user.id}" />
+                    </c:url>
+                    <c:url var="detailLink" value="/user/detail">
+                        <c:param name="userId" value="${user.id}" />
+                    </c:url>
+                    <tr>
+                        <th scope="row">${user.fullName}</th>
+                        <td>${user.teamMember}</td>
+                        <td>
+                            <sec:authorize access="hasRole('ADMIN')">
+                                <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                            </sec:authorize>
+                            <a href="${detailLink}" class="btn btn-outline-info" role="button" aria-pressed="true">Detail</a>
+                            <sec:authorize access="hasRole('ADMIN')">
+                                <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                            </sec:authorize>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+    <div class="container" style="padding-top: 500px; margin-bottom: 200px" id="listProductsContainer">
+        <div class="contentContainer">
+            <div class="row">
+                <div class="col-sm-10" id="container" style="border-left: 1px">
+                    <p>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new Product</a>
+                        </sec:authorize>
+                    </p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Memory</th>
+                            <th scope="col">Purchase Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="product" items="${products}">
+                            <c:url var="updateLink" value="/showFormForUpdate">
+                                <c:param name="productId" value="${product.id}" />
+                            </c:url>
+                            <c:url var="detailLink" value="/detail">
+                                <c:param name="productId" value="${product.id}" />
+                            </c:url>
+                            <c:url var="deleteLink" value="/delete">
+                                <c:param name="productId" value="${product.id}" />
+                            </c:url>
+                            <tr>
+                                <td>${product.productName}</td>
+                                <th>${product.owner}</th>
+                                <td>${product.model}</td>
+                                <td>${product.memoryGb}</td>
+                                <td>${product.purchaseDate}</td>
+                                <td>
+                                    <sec:authorize access="hasRole('ADMIN')">
+                                        <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                                    </sec:authorize>
+                                    <a href="${detailLink}" class="btn btn-outline-info" role="button" aria-pressed="true">Detail</a>
+                                    <sec:authorize access="hasRole('ADMIN')">
+                                        <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                                    </sec:authorize>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </body>
+
+<script src="../resources/static/jquery/jquery.min.js"></script>
+<script src="../resources/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </html>

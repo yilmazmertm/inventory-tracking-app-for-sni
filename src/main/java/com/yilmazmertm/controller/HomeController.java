@@ -37,6 +37,12 @@ public class HomeController {
     public String showHomePage(Model theModel) {
         User user = new User();
         theModel.addAttribute("user", user);
+
+        List<User> users = userService.getAllUsers();
+        theModel.addAttribute("users", users);
+
+        List<Product> theProducts = productService.getAllProducts();
+        theModel.addAttribute("products", theProducts);
         return "homepage";
     }
 
@@ -58,7 +64,6 @@ public class HomeController {
         } else{
             product.setUpdatedBy(authentication.getName());
         }
-
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
@@ -89,7 +94,7 @@ public class HomeController {
     @GetMapping("/delete")
     public String deleteProduct(@RequestParam("productId") int theId) {
         productService.deleteProduct(theId);
-        return "redirect:/list";
+        return "redirect:/";
     }
 
     @GetMapping("/detail")

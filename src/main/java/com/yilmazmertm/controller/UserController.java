@@ -4,17 +4,17 @@ import com.yilmazmertm.entity.Product;
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 @RequestMapping({"user", "/user"})
-@RestController
+@Controller
 public class UserController {
 
     private final ProductService productService;
@@ -62,9 +62,15 @@ public class UserController {
         user.setTeamMember(team);user.setEmail(email);user.setActive(active);user.setPassword(password);
 
         userService.saveUser(user);
-        return "homepage";
+        return "/";
     }
 
+    @PostMapping(value = "/saveAjaxJson", headers = "Accept=*/*" , consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public User saveValueJson(@RequestBody User user) {
+        System.out.println(user.getFullName());
+        return user;
+    }
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId, Model theModel) {
@@ -76,7 +82,7 @@ public class UserController {
     @GetMapping("/delete")
     public String deleteUser(@RequestParam("userId") int theId) {
         userService.deleteUser(theId);
-        return "redirect:/user/list";
+        return "redirect:/";
     }
 
     @GetMapping({"/getRegister", "getRegister"})
@@ -89,9 +95,6 @@ public class UserController {
     @PostMapping("/doRegister")
     public String doRegister(@ModelAttribute("user") User user, Model theModel, BindingResult bindingResult) {
         boolean isUnique = userService.emailValidation(user.getEmail());
-
-
-
         String message = "You have successfully registered.Login with these information :) ";
         if (bindingResult.hasErrors()){
             message = "Oops ! Something wrong, check all the information again when registering.";
