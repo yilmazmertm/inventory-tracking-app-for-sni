@@ -14,7 +14,6 @@
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="../resources/static/new-style.css" rel="stylesheet">
-
     <!-- Jquery Scripts -->
     <!-- Jquery Scripts -->
     <script>
@@ -58,14 +57,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/user/saveAjaxJson',
-                    contentType:'application/json',
-                    dataType: "json",
-                    beforeSend: function(x) {
-                        if (x && x.overrideMimeType) {
-                            x.overrideMimeType("application/j-son;charset=UTF-8");
-                        }
-                    },
+                    url: '/user/saveAjax',
                     data: {
                         userName:userName,
                         userLastName:userLastName,
@@ -165,21 +157,23 @@
                         <p class="card-text">You can list all of the items at the company. This list will give you a information about who owns which item.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#listProductsContainer" class="btn btn-primary">List</a>
+                        <a href="#listProductsContainer" class="btn btn-primary">List Products</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 mb-3">
-                <div class="card h-100">
-                    <h4 class="card-header">Add User</h4>
-                    <div class="card-body">
-                        <p class="card-text">You can add a new User if somebody joins the company.</p>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Click to add a User</button>
+            <sec:authorize access="hasRole('ADMIN')">
+                <div class="col-lg-3 mb-3">
+                    <div class="card h-100">
+                        <h4 class="card-header">Add User</h4>
+                        <div class="card-body">
+                            <p class="card-text">You can add a new User if somebody joins the company.</p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Click to add a User</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </sec:authorize>
             <!-- Add User Modal -->
             <!-- Add User Modal -->
             <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -243,7 +237,6 @@
             </div>
             <!-- Add User Modal -->
             <!-- Add User Modal -->
-
             <sec:authorize access="hasRole('ADMIN')">
             <div class="col-lg-3 mb-3">
                 </sec:authorize>
@@ -265,11 +258,9 @@
         </div>
     </div>
 </div>
-
 <!-- User List Scroll -->
 <!-- User List Scroll -->
-
-<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+<div data-spy="scroll" data-target="#navbar-example2" data-offset="100">
     <div class="container" style="padding-top: 500px; margin-bottom: 500px" id="listUserContainer">
         <div class="contentContainer">
             <table class="table table-hover">
@@ -310,9 +301,13 @@
         </div>
     </div>
 </div>
+<!-- User List Scroll -->
+<!-- User List Scroll -->
 
+<!-- Product List Scroll -->
+<!-- Product List Scroll -->
 <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-    <div class="container" style="padding-top: 500px; margin-bottom: 200px" id="listProductsContainer">
+    <div class="container" style="padding-top: 500px; padding-bottom: 500px;" id="listProductsContainer">
         <div class="contentContainer">
             <div class="row">
                 <div class="col-sm-10" id="container" style="border-left: 1px">
@@ -367,9 +362,8 @@
         </div>
     </div>
 </div>
-
-
-
+<!-- Product List Scroll -->
+<!-- Product List Scroll -->
 </body>
 
 <script src="../resources/static/jquery/jquery.min.js"></script>

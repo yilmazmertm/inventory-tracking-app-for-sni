@@ -18,7 +18,6 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void saveUser(User user) {
-        System.out.println(user.getId());
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);
     }
@@ -52,7 +51,7 @@ public class UserDAOImpl implements UserDAO{
         Query<User> theQuery = currentSession.createQuery("from User where email=:email", User.class);
         theQuery.setParameter("email", email);
         System.out.println("Result list size : " + theQuery.getResultList().size());
-        if (theQuery.getResultList().size() == 1) {
+        if (theQuery.getResultList().size() == 0) {
             return true;
         } else {
             return false;
