@@ -29,9 +29,6 @@
         </div>
         <div class="col-md-4">
             <div class="my-3">
-                <a href="${pageContext.request.contextPath}/user/list" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Geri Dön</a>
-            </div>
-            <div class="my-3">
                 <a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Ana Sayfaya Dön</a>
             </div>
         </div>
