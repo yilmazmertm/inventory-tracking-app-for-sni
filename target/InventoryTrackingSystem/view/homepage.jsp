@@ -37,6 +37,10 @@
                 return false;
             });
 
+            $('#addUseratTable').click(function(){
+                $('#addUserModal').modal('show');
+            });
+
             var $userName = $('#inputFirstName');
             var $userLastName = $('#inputLastName');
             var $userRole = $('#inputRole');
@@ -57,8 +61,9 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/user/saveAjax',
-                    data: {
+                    url: '/user/saveAjaxJson',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
                         userName:userName,
                         userLastName:userLastName,
                         userRole:userRole,
@@ -66,11 +71,14 @@
                         email: email,
                         active:active,
                         password:password
-                    },
+                    }),
                     success: function (response) {
-                        alert('success')
-                        $('#addUserModal').modal('hide');
-                        console.log(response)
+                        if (response === false){
+                            alert("email is already taken")
+                        }else {
+                            alert('success')
+                            $('#addUserModal').modal('hide');
+                        }
                     },
                     error: function () {
                         alert('error saving user');
@@ -263,6 +271,11 @@
 <div data-spy="scroll" data-target="#navbar-example2" data-offset="100">
     <div class="container" style="padding-top: 500px; margin-bottom: 500px" id="listUserContainer">
         <div class="contentContainer">
+            <p>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <button id="addUseratTable" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new User</button>
+                </sec:authorize>
+            </p>
             <table class="table table-hover">
                 <thead>
                 <tr>

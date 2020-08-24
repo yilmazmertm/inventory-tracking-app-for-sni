@@ -4,7 +4,6 @@ import com.yilmazmertm.entity.Product;
 import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,11 +64,16 @@ public class UserController {
         return "/";
     }
 
-    @PostMapping(value = "/saveAjaxJson", headers = "Accept=*/*" , consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/saveAjaxJson", method = RequestMethod.POST)
     @ResponseBody
-    public User saveValueJson(@RequestBody User user) {
-        System.out.println(user.getFullName());
-        return user;
+    public boolean saveValueJson(@RequestBody User user) {
+        boolean result = userService.emailValidation(user.getEmail());
+        if (result){
+            userService.saveUser(user);
+        }else {
+            return false;
+        }
+        return true;
     }
 
     @GetMapping("/showFormForUpdate")
@@ -82,7 +86,7 @@ public class UserController {
     @GetMapping("/delete")
     public String deleteUser(@RequestParam("userId") int theId) {
         userService.deleteUser(theId);
-        return "redirect:/";
+        return "redirect:/#listUserContainer";
     }
 
     @GetMapping({"/getRegister", "getRegister"})

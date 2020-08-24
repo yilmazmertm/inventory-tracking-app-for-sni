@@ -67,7 +67,7 @@ public class HomeController {
         product.setOwner(userFromDatabase.getFullName());
         product.setUser(userFromDatabase);
         productService.saveProduct(product);
-        return "redirect:/list";
+        return "redirect:/#listProductsContainer";
     }
 
     @GetMapping("/list")
@@ -94,7 +94,7 @@ public class HomeController {
     @GetMapping("/delete")
     public String deleteProduct(@RequestParam("productId") int theId) {
         productService.deleteProduct(theId);
-        return "redirect:/";
+        return "redirect:/#listProductsContainer";
     }
 
     @GetMapping("/detail")

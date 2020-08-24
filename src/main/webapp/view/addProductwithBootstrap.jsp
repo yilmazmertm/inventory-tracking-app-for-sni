@@ -109,10 +109,9 @@
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Add Product"/>
+                <a href="${pageContext.request.contextPath}/" class="btn btn-danger " role="button" aria-pressed="true">Ana Sayfaya Dön</a>
             </div>
         </form:form>
-    </div>
-    <div class="col-sm-2">
     </div>
 </div>
 </body>
