@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping({"user", "/user"})
@@ -48,7 +49,7 @@ public class UserController {
         theModel.addAttribute("message", message);
 
         userService.saveUser(user);
-        return "homepage";
+        return "redirect:/#listUserContainer";
     }
 
     @PostMapping(value = "/saveAjax", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -121,5 +122,14 @@ public class UserController {
         User theUser = userService.getUser(theId);
         theModel.addAttribute("theUser", theUser);
         return "user-detail";
+    }
+
+    @RequestMapping("/userNamesAutoComplete")
+    @ResponseBody
+    public List<String> userNameAutocomplete(@RequestParam(value = "term", required = false, defaultValue = "") String term){
+        List<String> suggestions = new ArrayList<String>();
+        suggestions = userService.getUserNameSuggestions();
+        System.out.println(suggestions);
+        return suggestions;
     }
 }

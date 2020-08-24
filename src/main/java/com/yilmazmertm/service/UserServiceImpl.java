@@ -51,4 +51,10 @@ public class UserServiceImpl implements UserService{
     public boolean emailValidation(String email) {
         return userDao.emailValidation(email);
     }
+
+    @Override
+    @Transactional
+    public List<String> getUserNameSuggestions() {
+        return userDao.getUserNameSuggestions();
+    }
 }

@@ -17,4 +17,6 @@ public interface UserService {
     User getUserForUpdate(int theId);
 
     boolean emailValidation(String email);
+
+    List<String> getUserNameSuggestions();
 }

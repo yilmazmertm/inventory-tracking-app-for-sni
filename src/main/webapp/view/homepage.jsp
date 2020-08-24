@@ -323,7 +323,7 @@
     <div class="container" style="padding-top: 500px; padding-bottom: 500px;" id="listProductsContainer">
         <div class="contentContainer">
             <div class="row">
-                <div class="col-sm-10" id="container" style="border-left: 1px">
+                <div class="col-sm-12" id="container" style="border-left: 1px">
                     <p>
                         <sec:authorize access="hasRole('ADMIN')">
                             <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new Product</a>

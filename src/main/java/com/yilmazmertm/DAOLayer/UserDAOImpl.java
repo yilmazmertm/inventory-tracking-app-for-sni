@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -56,6 +58,18 @@ public class UserDAOImpl implements UserDAO{
         } else {
             return false;
         }
+    }
+
+    @Override
+    public List<String> getUserNameSuggestions() {
+        List<String> suggestions = new ArrayList<String>();
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<User> theQuery = currentSession.createQuery("from User", User.class);
+
+        for (User user : theQuery.getResultList()) {
+            suggestions.add(user.getUserName());
+        }
+        return suggestions;
     }
 
     @Override
