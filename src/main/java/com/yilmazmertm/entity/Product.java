@@ -1,6 +1,7 @@
 package com.yilmazmertm.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -40,7 +41,7 @@ public class Product {
     @Column(name = "create_time", nullable = false)
     private Date create_time;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_time", nullable = false)
     private Date update_time;

@@ -15,11 +15,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @RequestMapping({"", "/"})
 @Controller
@@ -31,6 +29,13 @@ public class HomeController {
     public HomeController(ProductService productService, UserService userService) {
         this.productService = productService;
         this.userService = userService;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss.SSS");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 
     @RequestMapping({"", "/"})
@@ -87,6 +92,7 @@ public class HomeController {
         theModel.addAttribute("theUsers", users);
         theModel.addAttribute("user_ids", user_ids);
         Product theProduct = productService.getProduct(theId);
+        theProduct.setCreatedBy(theProduct.getCreatedBy());
         theModel.addAttribute("theProduct", theProduct);
         return "addProductwithBootstrap";
     }

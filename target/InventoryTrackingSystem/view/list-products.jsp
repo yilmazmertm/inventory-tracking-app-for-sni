@@ -2,11 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core"  prefix = "c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
     <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel = "stylesheet">
-    <title>Product List Page</title>
+    <title>Ürün Listeleme</title>
 </head>
 <body>
 <div class="contentContainer">
@@ -14,19 +15,19 @@
         <div class="col-sm-10" id="container" style="border-left: 1px">
             <p>
                 <sec:authorize access="hasRole('ADMIN')">
-                    <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Add new Product</a>
+                    <a href="${pageContext.request.contextPath}/addProduct" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Ürün Ekleyin</a>
                 </sec:authorize>
             </p>
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">Owner</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Sahibi</th>
+                    <th scope="col">Ürün İsmi</th>
+                    <th scope="col">Üretici</th>
                     <th scope="col">Model</th>
-                    <th scope="col">Memory</th>
-                    <th scope="col">Purchase Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Bellek</th>
+                    <th scope="col">Alış Tarihi</th>
+                    <th scope="col">Aksiyon</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,11 +50,11 @@
                         <td>${product.purchaseDate}</td>
                         <td>
                             <sec:authorize access="hasRole('ADMIN')">
-                                <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Update</a>
+                                <a href="${updateLink}" class="btn btn-outline-success" role="button" aria-pressed="true">Güncelle</a>
                             </sec:authorize>
-                            <a href="${detailLink}" class="btn btn-outline-info" role="button" aria-pressed="true">Detail</a>
+                            <a href="${detailLink}" class="btn btn-outline-info" role="button" aria-pressed="true">Detay</a>
                             <sec:authorize access="hasRole('ADMIN')">
-                                <a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
+                                <a href="${deleteLink}" onclick="if (!(confirm('Ürünü silmek istediğinizden emin misiniz ?'))) return false" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a>
                             </sec:authorize>
                         </td>
                     </tr>
