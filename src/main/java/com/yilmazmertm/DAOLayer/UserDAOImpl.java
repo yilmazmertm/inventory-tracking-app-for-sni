@@ -61,11 +61,11 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public List<String> getUserNameSuggestions() {
+    public List<String> getUserNameSuggestions(String term) {
         List<String> suggestions = new ArrayList<String>();
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<User> theQuery = currentSession.createQuery("from User", User.class);
-
+        Query<User> theQuery = currentSession.createQuery("from User where userName LIKE :term", User.class);
+        theQuery.setParameter("term", "%" + term + "%");
         for (User user : theQuery.getResultList()) {
             suggestions.add(user.getUserName());
         }

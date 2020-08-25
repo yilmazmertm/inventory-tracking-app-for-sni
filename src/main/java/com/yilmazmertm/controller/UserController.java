@@ -127,8 +127,8 @@ public class UserController {
     @RequestMapping("/userNamesAutoComplete")
     @ResponseBody
     public List<String> userNameAutocomplete(@RequestParam(value = "term", required = false, defaultValue = "") String term){
-        List<String> suggestions = new ArrayList<String>();
-        suggestions = userService.getUserNameSuggestions();
+        List<String> suggestions;
+        suggestions = userService.getUserNameSuggestions(term);
         System.out.println(suggestions);
         return suggestions;
     }

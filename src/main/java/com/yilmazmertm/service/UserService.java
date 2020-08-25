@@ -18,5 +18,5 @@ public interface UserService {
 
     boolean emailValidation(String email);
 
-    List<String> getUserNameSuggestions();
+    List<String> getUserNameSuggestions(String term);
 }

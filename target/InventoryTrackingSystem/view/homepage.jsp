@@ -12,8 +12,11 @@
     <meta name="author" content="">
 
     <title>SNI Envanter Takip Sistemi</title>
+
+    <script src="../resources/static/jquery/jquery.js" ></script>
+    <script src="../resources/static/jquery/jquery-ui-1.12.1/jquery-ui.js"></script>
+
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="../resources/static/new-style-homepage.css" rel="stylesheet">
     <!-- Jquery Scripts -->
     <!-- Jquery Scripts -->
@@ -55,7 +58,7 @@
                 var userName = $userName.val();
                 var userLastName = $userLastName.val();
                 var userRole = $userRole.val();
-                var team = $team.val();
+                var teamMember = $team.val();
                 var email = $email.val();
                 var active = $active.val();
                 var password = $password.val();
@@ -68,7 +71,7 @@
                         userName:userName,
                         userLastName:userLastName,
                         userRole:userRole,
-                        team:team,
+                        teamMember:teamMember,
                         email: email,
                         active:active,
                         password:password
@@ -85,6 +88,14 @@
                         alert('Kullanıcı eklerken beklenmedik hata :(');
                     }
                 })
+            });
+            $("#User_Name").autocomplete({
+                source: function (request, response) {
+                    $.getJSON("${pageContext.request.contextPath}/user/userNamesAutoComplete", {
+                        term: request.term
+                    }, response);
+                },
+                minLength:2
             });
         });
     </script>
@@ -319,6 +330,9 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <form:form method="get" action="/hello">
+                Search Form: <input class="form-control" id="User_Name">
+            </form:form>
         </div>
     </div>
 </div>
@@ -386,8 +400,6 @@
 <!-- Product List Scroll -->
 <!-- Product List Scroll -->
 </body>
-
-<script src="../resources/static/jquery/jquery.min.js"></script>
 <script src="../resources/static/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </html>

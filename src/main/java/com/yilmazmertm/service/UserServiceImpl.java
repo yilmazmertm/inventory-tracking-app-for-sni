@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public List<String> getUserNameSuggestions() {
-        return userDao.getUserNameSuggestions();
+    public List<String> getUserNameSuggestions(String term) {
+        return userDao.getUserNameSuggestions(term);
     }
 }

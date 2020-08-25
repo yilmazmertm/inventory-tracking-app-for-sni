@@ -18,5 +18,5 @@ public interface UserDAO {
 
     boolean emailValidation(String email);
 
-    List<String> getUserNameSuggestions();
+    List<String> getUserNameSuggestions(String term);
 }
