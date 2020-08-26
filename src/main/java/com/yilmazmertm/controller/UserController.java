@@ -84,7 +84,7 @@ public class UserController {
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId, Model theModel) {
-        User theUser = userService.getUserForUpdate(theId);
+        User theUser = userService.getUser(theId);
         theModel.addAttribute("user", theUser);
         return "addUser";
     }

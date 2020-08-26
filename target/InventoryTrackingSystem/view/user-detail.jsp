@@ -5,7 +5,6 @@
     <title>Kullanıcı Detay Sayfası</title>
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../resources/static/new-style-homepage.css" rel="stylesheet">
-
     <style>
         p{
             color: red;

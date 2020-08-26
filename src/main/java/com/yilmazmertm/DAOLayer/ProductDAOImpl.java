@@ -39,18 +39,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public void deleteProduct(int theId) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query theQuery = currentSession.createQuery("delete from Product where id=:productId");
-        theQuery.setParameter("productId", theId);
-        theQuery.executeUpdate();
+        currentSession.remove(getProduct(theId));
     }
-
-    @Override
-    public Product getProductDetail(int theId) {
-        Session currentSession = sessionFactory.getCurrentSession();
-        Query<Product> theQuery = currentSession.createQuery("from Product where id=:productId", Product.class);
-        theQuery.setParameter("productId", theId);
-        return theQuery.getSingleResult();
-    }
-
 
 }

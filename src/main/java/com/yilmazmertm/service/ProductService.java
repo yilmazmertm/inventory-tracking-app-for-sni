@@ -14,6 +14,4 @@ public interface ProductService {
     Product getProduct(int theId);
 
     void deleteProduct(int theId);
-
-    Product getProductDetail(int theId);
 }

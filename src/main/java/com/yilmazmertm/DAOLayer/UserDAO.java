@@ -14,8 +14,6 @@ public interface UserDAO {
 
     public User getUser(int user_id);
 
-    User getUserForUpdate(int theId);
-
     boolean emailValidation(String email);
 
     List<String> getUserNameSuggestions(String term);

@@ -42,12 +42,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public User getUserForUpdate(int theId) {
-        return userDao.getUserForUpdate(theId);
-    }
-
-    @Override
-    @Transactional
     public boolean emailValidation(String email) {
         return userDao.emailValidation(email);
     }

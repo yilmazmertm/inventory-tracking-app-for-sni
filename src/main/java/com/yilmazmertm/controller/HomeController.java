@@ -75,7 +75,7 @@ public class HomeController {
     @PostMapping("/saveProduct")
     public String addProduct(@ModelAttribute("theProduct") Product product,Model theModel, Authentication authentication) {
 
-        User userFromDatabase = userService.getUserForUpdate(product.getUser().getId());
+        User userFromDatabase = userService.getUser(product.getUser().getId());
         if (product.getId() == 0){
             product.setCreatedBy(authentication.getName());
         } else{
@@ -117,7 +117,7 @@ public class HomeController {
 
     @GetMapping("/detail")
     public String productDetail(@RequestParam("productId") int theId, Model theModel) {
-        Product theProduct = productService.getProductDetail(theId);
+        Product theProduct = productService.getProduct(theId);
         theModel.addAttribute("theProduct", theProduct);
         return "product-detail";
     }

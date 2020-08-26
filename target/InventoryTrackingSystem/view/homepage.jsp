@@ -10,15 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>SNI Envanter Takip Sistemi</title>
-
     <script src="../resources/static/jquery/jquery.js" ></script>
     <script src="../resources/static/jquery/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="../resources/static/js/homepage.js"></script>
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../resources/static/new-style-homepage.css" rel="stylesheet">
-
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -111,8 +108,6 @@
                     </div>
                 </div>
             </sec:authorize>
-
-
             <!-- Add User Modal -->
             <!-- Add User Modal -->
             <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -322,5 +317,4 @@
 <!-- Product List Scroll -->
 </body>
 <script src="../resources/static/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </html>

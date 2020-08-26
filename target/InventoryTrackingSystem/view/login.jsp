@@ -11,15 +11,12 @@
     <title>SNI Envanter Takip Sistemi</title>
     <link rel="canonical" href="../resources/static/logo-sni.png">
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="../resources/static/sigin.css" rel="stylesheet">
 </head>
-
 <body class="text-center">
 <form:form action="/perform_login" method="post" class="form-signin">
     <img class="mb-4" src="../resources/static/logo-sni.png" alt="" width="98" height="77">
     <h1 class="h3 mb-3 font-weight-normal">Lütfen Giriş Yapınız</h1>
-
     <label for="inputEmail" class="sr-only">Email adresi</label>
     <input type="email" id="inputEmail" name="changedUsername" class="form-control" placeholder="Email adresi" required autofocus>
     <label for="inputPassword" class="sr-only" >Şifre</label>
