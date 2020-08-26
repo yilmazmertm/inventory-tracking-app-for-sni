@@ -5,6 +5,7 @@ import com.yilmazmertm.entity.User;
 import com.yilmazmertm.service.ProductService;
 import com.yilmazmertm.service.UserService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,9 +16,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 @RequestMapping({"", "/"})
 @Controller
@@ -50,6 +53,15 @@ public class HomeController {
         theModel.addAttribute("products", theProducts);
         return "homepage";
     }
+
+    // Try To return an model with ajax
+    @RequestMapping(value = "/returnUserList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<User> returnUserList() {
+        List<User> users = userService.getAllUsers();
+        return users;
+    }
+    // Try To return an model with ajax
 
     @GetMapping({"addProduct", "/addProduct"})
     public String showProductForm(Model theModel) {

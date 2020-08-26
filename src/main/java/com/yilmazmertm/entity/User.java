@@ -1,5 +1,7 @@
 package com.yilmazmertm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,6 +25,7 @@ public class User implements Serializable {
     private String userRole;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Product> products;
 
     @Column(name = "team")

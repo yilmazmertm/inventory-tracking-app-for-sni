@@ -89,6 +89,25 @@
                     }
                 })
             });
+
+            $("#showUserListAjax").click(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/returnUserList",
+                    cache: false,
+                    success: function(response){
+                        alert('User listesi gösterimi başarılı')
+                        console.log(response)
+                        $("#content").html("");
+                        $("#content").append(response);
+                    },
+                    error: function(){
+                        alert('Error while request..');
+                    }
+                });
+            })
+
+
             $("#User_Name").autocomplete({
                 source: function (request, response) {
                     $.getJSON("${pageContext.request.contextPath}/user/userNamesAutoComplete", {
@@ -193,6 +212,8 @@
                     </div>
                 </div>
             </sec:authorize>
+
+
             <!-- Add User Modal -->
             <!-- Add User Modal -->
             <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

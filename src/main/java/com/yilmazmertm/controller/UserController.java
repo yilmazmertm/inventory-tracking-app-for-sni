@@ -52,6 +52,9 @@ public class UserController {
         return "redirect:/#listUserContainer";
     }
 
+
+    //SAVE WITH AJAX
+    //SAVE WITH AJAX
     @PostMapping(value = "/saveAjax", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String saveValue(@RequestParam("userName") String userName,@RequestParam("userLastName") String userLastName,
@@ -76,6 +79,8 @@ public class UserController {
         }
         return true;
     }
+    //SAVE WITH AJAX
+    //SAVE WITH AJAX
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId, Model theModel) {
