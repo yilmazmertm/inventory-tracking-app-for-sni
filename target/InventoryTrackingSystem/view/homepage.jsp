@@ -15,7 +15,7 @@
     <script src="../resources/static/jquery/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="../resources/static/js/homepage.js"></script>
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../resources/static/new-style-homepage.css" rel="stylesheet">
+    <link href="../resources/static/css/new-style-homepage.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -48,7 +48,7 @@
 <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active" style="background-image: url('../resources/static/SNIwallpaper - Copy2.jpg'); height: 400px; width: 1900px;">
+            <div class="carousel-item active" style="background-image: url('../resources/static/img/SNIwallpaper - Copy2.jpg'); height: 400px; width: 1900px;">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Envanter Takip Sistemi</h3>
                 </div>
@@ -194,8 +194,8 @@
 </div>
 <!-- User List Scroll -->
 <!-- User List Scroll -->
-<div data-spy="scroll" data-target="#navbar-example2" data-offset="100">
-    <div class="container" style="padding-top: 500px; margin-bottom: 500px" id="listUserContainer">
+<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+    <div class="container" style="padding-top: 500px; padding-bottom: 500px" id="listUserContainer">
         <div class="contentContainer">
             <p>
                 <sec:authorize access="hasRole('ADMIN')">

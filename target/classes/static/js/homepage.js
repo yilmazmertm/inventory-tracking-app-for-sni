@@ -84,10 +84,9 @@ $(document).ready(function(){
         });
     })
 
-
     $("#User_Name").autocomplete({
         source: function (request, response) {
-            $.getJSON("${pageContext.request.contextPath}/user/userNamesAutoComplete", {
+            $.getJSON("user/userNamesAutoComplete", {
                 term: request.term
             }, response);
         },

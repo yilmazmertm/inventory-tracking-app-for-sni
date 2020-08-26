@@ -7,15 +7,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="../resources/static/logo-sni.png">
+    <link rel="icon" href="../resources/static/img/logo-sni.png">
     <title>SNI Envanter Takip Sistemi - Kaydol</title>
-    <link rel="canonical" href="../resources/static/logo-sni.png">
+    <link rel="canonical" href="../resources/static/img/logo-sni.png">
     <link href="../resources/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../resources/static/sigin.css" rel="stylesheet">
+    <link href="../resources/static/css/sigin.css" rel="stylesheet">
 </head>
 <body class="text-center">
 <form:form action="doRegister" modelAttribute="user" method="post" class="form-signin">
-    <img class="mb-4" src="../resources/static/logo-sni.png" alt="" width="98" height="77">
+    <img class="mb-4" src="../resources/static/img/logo-sni.png" alt="" width="98" height="77">
     <h1 class="h3 mb-3 font-weight-normal">Lütfen Kaydolun</h1>
 
     <div class="form-group">

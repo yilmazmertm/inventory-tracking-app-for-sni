@@ -26,7 +26,6 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public List<User> getAllUsers() {
-
         Session currentSession = sessionFactory.getCurrentSession();
         Query<User> theQuery = currentSession.createQuery("from User", User.class);
         return theQuery.getResultList();
@@ -49,7 +48,6 @@ public class UserDAOImpl implements UserDAO{
         Session currentSession = sessionFactory.getCurrentSession();
         Query<User> theQuery = currentSession.createQuery("from User where email=:email", User.class);
         theQuery.setParameter("email", email);
-        System.out.println("Result list size : " + theQuery.getResultList().size());
         if (theQuery.getResultList().size() == 0) {
             return true;
         } else {
