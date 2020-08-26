@@ -6,15 +6,8 @@
 <head>
     <link href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel = "stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../resources/static/js/addProduct.js"></script>
     <title>Ürün ekleme Sayfası</title>
-
-    <script>
-        $(document).ready(function() {
-            $("#showModal").click(function () {
-                window.location.href = '/#openModal'
-            });
-        });
-    </script>
 </head>
 <body>
 <h2>Lütfen ürün ekleyiniz, ürünün kime ait olacağını dikkatle seçiniz.</h2>
